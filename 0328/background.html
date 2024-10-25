@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+* {
+  margin: 0;
+}
+#container {
+  height: 100vh; /* viewHeight */
+}    
+#content {
+  background-color: yellowgreen;
+  width: 100%;
+  height: 100%;
+  background-image: url(../images/mahwa.jpg);
+  background-position: 0% 50%;  /* left center*/
+  background-size: 50%;
+  background-repeat: no-repeat;
+  border: 20px dashed brown;
+  padding: 20px;
+  /* 백그라운드 칼라가 표현될 범위 시작 시점을 설정 */
+  background-clip: content-box;
+  /* 백그라운드 이미지가 시작되는 시점을 설정 */
+  background-origin: content-box;
+}
+#content1 {
+  width: 90%;
+  height: 90%;
+  border: 30px dotted gray;
+  padding: 40px;
+  /* 축약 
+    background: [color] [image] [position/size] [repeat] origin clip attachment ...
+    - 순서 변경 및 생략 가능, 대신 position뒤에 size배치, origin 다음 clip 배치 지킬 것
+    - position은 top, bottom, left, right center, 백분율, 길이 등을 위치 값으로 사용하기 때문에
+      size와 값의 단위를 공유하므로 반드시 슬래시로 구분해야 한다 
+      (position은 단독사용 가능, size는 position과 함께 명시) */
+  background: royalblue url(../images/ㅎㅁㅎ2.jpg) left center/50% no-repeat content-box border-box;
+}
+/*여러 배경화면 등록*/
+#content2 {
+  width: 90%;
+  height: 90%;
+  border: 30px dashed gray;
+  padding: 20px;
+  background: url(../images/ㅎㅁㅎ1.jpg) left center/20% repeat-x content-box border-box,
+            url(../images/민우.png) left center/20% repeat-y;
+}
+#content3 {
+  /* width: 90%;
+  height: 90%;
+  border: 30px dashed gray;
+  padding: 20px;
+  background: url(../images/민우.jpg) left center/20% repeat-y;
+   opacity:0.5; /*자식에게도 상속*/   */
+}
+/* 가상의 공간에 투명이미지만 따로 처리 */
+#content3::before{
+  content: "";
+  background:  url(../images/민우.jpg);
+  position: absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  opacity: 0.5;
+}
+
+</style>
+</head>
+<body>
+    <div id="container">
+        <div id="content3"></div>
+        <span>글씨 투명</span>
+    </div>
+</body>
+</html>

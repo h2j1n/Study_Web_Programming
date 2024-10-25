@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style type="text/css">
+    div {
+      border: 1px dashed cornflowerblue;
+      height: 200px;
+    }
+    </style>
+</head>
+<body>
+    <!-- 외부파일을 드래그드롭하므로 draggable속성 적용의 대상이 없음 -->
+    <div class="dropArea">드롭영역</div>    
+
+<script>
+    let v_dropArea = document.querySelector('.dropArea');
+
+    // 브라우저의 화면에 읽기가능한 파일이 접근되었을 때 파일을 새탭으로 열어주는 기능을 막기위한 조치
+    v_dropArea.addEventListener('dragover',function(e){
+        e.preventDefault();
+    });
+    v_dropArea.addEventListener('drop',function(){
+        event.preventDefault();
+        
+        let v_file = event.dataTransfer.files[0]; //유사배열의 반환 값 중 특정한 대상을 꼭 지정해야 함
+        console.log(v_file);
+
+
+        //FileReader객체를 이용해서 src속성의 값 생성하기
+        let rd = new FileReader();
+        
+        //File객체의 files속성을 통해 전달받은 이미지의 세부정보값으로 원하는 형태의 정보로 가공한다
+        // readAsDataURL()
+        
+        //데이터 읽기를 후 작성하는 이유는
+        // >>용량이 작은 파일의 경우 처리속도가 너무 빨라 load이벤트 실행전 먼저 결과를 반환할 수도 있으므로
+        //  이벤트가 먼저 완벽히 로딩되고 파일 읽기 완료 시점에서 함수가 호출됨을 보장하기 위해
+        rd.onload = function(){
+            console.log( rd.result ); //2.결과를 받아줌
+
+            //동적 이미지를 생성 -메소드 이용
+            let v_img = document.createElement('img'); //<img>
+            v_img.src = rd.result; //v_file변수에 담긴 정보를 가공처리해서 넣어주도록
+            v_img.alt = "통닭";
+            v_img.width = 100;
+
+            v_dropArea.append(v_img);
+        }
+        rd.readAsDataURL(v_file); //1.정보를 읽어서 처리후
+    });
+
+    // 브라우저 전체 영역에 읽기가능한 파일이 접근되었을 때 파일을 새탭으로 열어주는 기능을 막기위한 조치
+    window.ondragover = function(){
+        event.preventDefault();
+    }
+    window.ondrop = function(e){
+        e.preventDefault();
+    }
+    
+    
+    
+    
+</script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    function f_fnc(p_arg, p_arg1, p_arg2){ //매개변수는 넘치면 undefined을 반환
+        // alert(p_arg + p_arg1 + p_arg2);
+        // alert(p_arg[1]);
+        alert(p_arg[8282]); //점연산자 또는 배열식접근법으로 값(value)에 접근 
+                           // 숫자 접근시 배열식접근법 활용
+    }
+    // f_fnc('바질','페스토'); //인수가 남으면 무시된다
+    // f_fnc(['바질','페스토']);
+    // f_fnc({키:'밸류', 'key':'value', "8282":'다비치'});
+
+    
+
+    function f_fnc2(p_arg){
+        // alert(p_arg); //함수 그 자체를 가리키는 FunctionPointer
+        alert(p_arg());  //넘어온 함수를 실행하고 실행 후 반환하는 return값을 표시
+    }
+    f_fnc2(function(){alert("ㅎㅎ"); return "생략가능하고 undefined반환함"})
+
+    
+    
+    
+    
+    
+    
+    
+</script>
+</body>
+</html>

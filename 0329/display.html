@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+div {
+  border-style: solid;
+  height: 100px;
+}
+#p1 {
+  display: none;
+  border: solid red; 
+}
+#p2 {
+  /* block->inline으로 변경되면서  */ 
+  display: inline; 
+  border: solid red; 
+  height: 100px; /* 크기조절 불가 */
+}
+#p3 {
+  /* display: block; */
+  border: solid red;
+  height: 50px; 
+}#p4 {
+    display: inline-block;
+    border: solid red;
+    height: 100px; 
+}
+</style>
+</head>
+<body>
+    <h1>display:none</h1>
+    <div>동해물과 <p id="p1">백두산</p>이 마르고 닳도록</div>
+  
+    <h1>display:inline</h1>
+    <div>동해물과 <p id="p2">백두산</p>이 마르고 닳도록</div>
+  
+    <h1>display:block</h1>
+    <div>동해물과 <p id="p3">백두산</p>이 마르고 닳도록</div>
+  
+    <h1>display:inline-block</h1>
+    <div>동해물과 <p id="p4">백두산</p>이 마르고 닳도록</div>
+</body>
+</html>

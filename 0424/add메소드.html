@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+img {
+  width: 50px;
+}
+p {
+  border: 3px ridge orange;
+  display: inline-block;
+}
+</style>
+</head>
+<body>  
+    <h4>title속성 정보로 이미지 생성 후 추가하기</h4>
+    <p title="ala.jpg">코알라</p> <br>
+    <p title="bara2.jpg">배라2</p> <br>
+    <p title="cha.jpg">차은우</p> <br>
+    <p title="lion.jpg">사자</p> <br>
+    <p title="iu.png">아이유</p>
+    
+<script src="../js/jquery-3.7.1.min.js"></script>
+<script>
+    $('p').on('click',function(){
+        let $titleToSrc = $(this).attr('title');
+        let $txtToAlt = $(this).text();
+        console.log($titleToSrc, $txtToAlt);
+
+        //js 동적생성 - DOMString >>innerHTML, insertAdjacentHTML()
+        // let jsImg = "<img src='../imagess/" + $titleToSrc + "' alt='" + $txtToAlt + "'>";
+        let jsImg = `<img src='../images/${$titleToSrc}' alt='${$txtToAlt}' title='동적생성111'>`;
+        this.innerHTML += jsImg;
+        
+        //js 동적생성 - createElement() >> appendChild(), append()
+        let jsImg2 = document.createElement('img'); //<img>
+        jsImg2.src = '../images/' + $titleToSrc;
+        jsImg2.alt = $txtToAlt;
+        jsImg2.title = "동적생성222";
+        this.appendChild(jsImg2); //노드 대상은 두개의 메소드 모두 사용가능
+
+        //jq 동적생성 - $(문자열로 일괄생성)
+        let $jqImg = $(`<img src='../images/${$titleToSrc}' alt='${$txtToAlt}' title='jq동적1'>`);
+        $(this).prepend($jqImg); //요소 내부 앞쪽에 추가
+        // $jqImg.appendTo(this);
+
+        //jq 동적생성2 - $(문자열로 요소 따로 속성 따로 정의)
+        let $jqImg2 = $('<img>',{
+            src: '../images/' + $titleToSrc,
+            alt: $txtToAlt,
+            title: 'jq동적2'
+        }).insertBefore(this); //요소 외부 앞쪽에 추가
+
+        //부모. append, prepend, before, after (자식)
+        //자식. appendTo, prependTo, insertBefore, insertAfter (부모)
+
+
+    });
+    
+    
+    
+    
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <span>취미</span> <br><br>
+    <input type="checkbox" value="여행" checked>여행
+    <input type="checkbox" value="블로그">블로그
+    <input type="checkbox" value="베이킹">베이킹
+    <input type="checkbox" value="슬라임">슬라임
+    <input type="checkbox" value="골프" checked>골프
+    <input type="button" value="선택">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script>
+    $('[type=button]').on('click',function(){
+
+        let arr = [];
+        //$(입력양식선택자:상태필터)
+        $(':checkbox:checked').each(function(){
+            // console.log(this.value);
+            // console.log($(this).val()); //jq
+            arr.push(  $(this).val() );
+        });
+        alert("너의 취미는 " + arr);
+    });
+
+</script>    
+    <hr>
+    <!-- 단일 값은 alert로 출력하고-->
+    <select>
+        <option>선택</option>
+        <option>개나리</option>
+        <option>진달래</option>
+        <option>민들레</option>
+        <option>목련</option>
+        <option>왕벚꽃</option>
+    </select>
+
+    <!-- 여러 값은 버튼을 눌렀을 때 영역으로 출력시키기 -->
+    <select multiple size="5">
+        <option>개나리</option>
+        <option>진달래</option>
+        <option selected>민들레</option>
+        <option>목련</option>
+        <option>왕벚꽃</option>
+    </select>
+    <button>선택</button>
+    <div></div>
+
+<script>
+    // 단일 값 alert 출력
+    $('select').eq(0).on('change',function(){
+        alert(this.value);  // 단일 값은 value로 간단하게 얻어냄
+        alert($(this).val()); 
+        /* $('select option:selected').each(function(){
+            // console.log(this.innerText); 
+            console.log($(this).text());  
+        }); */
+
+    });
+
+    // 다중 값 영역으로 출력
+    $('button').on('click',function(){
+        // console.log($('select:last-of-type').eq(0).text());
+
+        let arr = [];
+        $('select:last-of-type option:selected').each(function(i){
+           console.log($(this).text()); 
+
+            // arr.push($(this).text());    // 아래와 같은 방식이지만 쉼표 있으
+            // arr += $(this).text();  // 쉼표 없이 추가
+            arr[i] = $(this).text();
+
+           $('div').text(arr); 
+        });
+    });
+
+
+
+
+</script>
+</body>
+</html>

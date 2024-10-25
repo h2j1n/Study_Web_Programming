@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+img {
+  width: 80px;
+  height: 80px;
+}
+button {
+  display: none;
+}
+</style>
+</head>
+<body>
+    <img src="../images/ala.jpg" data-src="../images/lion.jpg">    
+    <img src="../images/bara1.jpg" data-src="../images/bara2.jpg">    
+    <img src="../images/bara4.jfif" data-src="../images/bara6.webp">    
+    <img src="../images/som1.jpg" data-src="../images/wok1.jfif">    
+    <button>보이기</button>
+
+<script src="../js/jquery-3.7.1.min.js"></script>
+<script>
+    let $src;
+    $('img').on({
+        mouseover: function(){
+            //mouseout시 원복시킬 원본src정보 얻기
+            $src = $(this).attr('src');
+            
+            //사용자정의속성에 정의된 data-src정보 가져오기
+            // data('src'), attr('data-src')
+            let $src2 = $(this).data('src'); //get
+            // console.log($src2);
+            
+            //현재 이미지를 다른 이미지로 교체
+            $(this).attr('src',$src2); //set
+        },
+        mouseout: function(){
+            //원래 이미지로 다시 복귀
+            $(this).attr('src',$src); //set
+        },
+        dblclick: function(){
+            //이미지 숨김처리 - display:none / hide()
+            $(this).hide();
+            //모든 이미지 숨겨졌으면 버튼 요소 보이기
+            // console.log( $('img:visible').length );
+            if( $('img:visible').length == 0 ){
+                $('button').show(); //요소의 원본상태(block or inline)로 display설정
+            }
+        }
+    })
+
+    $('button').on('click',function(){
+        //이미지 모두 보이기
+        $('img').show();
+        //버튼 숨기기
+        $(this).hide();
+    });
+
+
+    
+</script>
+</body>
+</html>

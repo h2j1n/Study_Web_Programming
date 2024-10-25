@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <button>가져오기</button>    
+    <button>CSV</button>
+    <button>JSON</button>
+    <button>XML</button>
+    <!-- 여기에 테이블 추가될 예정 -->
+<script>
+    let v_disp = document.querySelector('body')
+    let v_btns = document.querySelectorAll('button');
+
+		//XML
+		v_btns[3].addEventListener('click',function(){
+			
+		});
+		
+		
+		
+    //JSON
+    // v_btns[2].addEventListener('click',function(){});
+    v_btns[2].onclick = function(){
+        let req = new XMLHttpRequest();
+        req.open('get','sample/test.json');
+        // req.onreadystatechange = function(){};
+        req.addEventListener('readystatechange',function(){
+            if(req.readyState == 4 && req.status == 200){
+                console.log(typeof req.responseText);
+                let jsonObj = JSON.parse(req.responseText);
+                console.log(typeof jsonObj);
+                f_json(jsonObj);
+            }
+        });
+        req.send()
+    }
+
+function f_json(p_json){
+	
+	// 정보의 key를 타이틀로 활용하기 위해 Object.keys(), values() 사용
+	console.log(p_json); //object array 
+	console.log(p_json[0]); //첫번째 object영역
+	// console.log( Object.values( p_json)[0] ); //각 object영역을 제공
+
+	let objKeys = Object.keys(p_json[0]); //object의 key정보만 배열로 반환받음
+
+	let v_tbl = "<table border=1>";
+		// v_tbl += "<tr><th>이름</th><th>종류</th><th>별명</th></tr>";
+		v_tbl += `<tr><th>${objKeys[0]}</th><th>${objKeys[1]}</th><th>${objKeys[2]}</th></tr>`;
+
+		for(let i=0; i<p_json.length; i++){
+			v_tbl += "<tr><td>" + p_json[i].name + "</td>";
+			v_tbl += `<td>${p_json[i].type}</td>`;
+			v_tbl += "<td>" + p_json[i].alias + "</td></tr>";
+		}
+
+		v_tbl += "</table>";
+
+	v_disp.insertAdjacentHTML('beforeend',v_tbl); //innerHTML대체
+}
+
+
+
+    //CSV
+    v_btns[1].addEventListener('click',function(){
+        //1.객체 생성
+        let req = new XMLHttpRequest();
+        //2.요청 설정
+        req.open('get','./sample/sample.csv');
+        //4.응답 받기
+        req.onreadystatechange = function(){
+            if(req.readyState == 4 && req.status == 200){
+                // console.log(req.responseText);
+                //테이블형식에 데이터 표시
+                f_csv(req.responseText);
+            }
+        }
+        //3.요청 전달
+        req.send();    
+    });
+    
+    let f_csv = function(p_csv){
+        console.log("함수로 연결된 정보>>", p_csv);
+
+        let v_lines = p_csv.split("\r\n");
+
+        let v_tbl = "<table border=1>";
+        for(let i=0; i<v_lines.length; i++){
+            v_tbl += "<tr>";
+            
+                let v_cells = v_lines[i].split(",");
+                for(let j=0; j<v_cells.length; j++){
+                    if(i<1){
+                        v_tbl += "<th>" + v_cells[j] + "</th>";
+                    }else{
+                        v_tbl += "<td>" + v_cells[j] + "</td>";
+                    }
+                }
+
+            v_tbl += "</tr>";
+        }
+        v_tbl += "</table>";
+        v_disp.innerHTML = v_tbl;
+    };
+
+    
+    
+    
+    
+    //버튼 이벤트 주기
+    let v_btn = document.querySelector('button');
+    v_btn.addEventListener('click',function(){
+        //javascript방식 AJAX
+        //1. 객체 생성
+        let ajax = new XMLHttpRequest();
+        //2. 요청 설정 url
+        ajax.open('get','../0424/dummy.txt')
+        //4. 응답 받기
+        ajax.onreadystatechange = function(){
+            if(ajax.readyState == 4 && ajax.status == 200){
+                console.log( ajax.responseText );
+            }
+        }
+        //3. 요청 전달
+        ajax.send()
+    });
+
+    
+    
+    
+</script>
+    
+</body>
+</html>

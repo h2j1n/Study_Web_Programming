@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    // break - 문장의 가장 가까운 반복문을 빠져나감
+    // continue - 해당 조건에 대해서만 skip
+
+    let msg = "";
+    for(let i=0; i<10; i++){
+       if(i==3) continue;
+       msg += i + "<br>";
+    }
+    document.write(msg);
+
+</script>    
+</body>
+</html>

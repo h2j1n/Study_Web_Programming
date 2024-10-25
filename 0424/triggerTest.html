@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <form action="404.html" onsubmit="f_fnc()">
+        <input type="button" value="보내기">
+    </form>    
+
+<script src="../js/jquery-3.7.1.min.js"></script>
+<script>
+
+    $('input').on('click',function(){
+        // $('form').trigger('submit'); //fnc()함수 실행 후 action위치로 이동
+        $('form').triggerHandler('submit'); //함수만 실행하고 action위치로 이동하지 않음
+    });
+
+    function f_fnc(){
+        alert("함수 실행 후에???");
+    }
+    
+    
+    
+</script>
+</body>
+</html>

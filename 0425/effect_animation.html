@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+img {
+  width: 100px;
+  position: relative;
+}
+#d1 {
+  border: 3px solid yellow;
+  padding: 10px;
+}
+</style>
+</head>
+<body>
+  <div id="d1">
+    <img src="../res/images/lion.jpg" alt="사자">
+  </div>
+  <input type="button" id="toLeft" value="<<<<">
+  <input type="button" id="toRight" value=">>>>">
+  
+  <hr>
+  
+  <input type="button" value="확인" id="btn3">
+  <p id="p1">무궁화 꽃이 피었습니다 - CSS</p>
+  <p id="p2">무궁화 꽃이 피었습니다 - animate</p>
+  
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+
+  $('#d1').on('click',function(){
+    
+    // fast200 - default400 - slow600
+    console.time('fade');
+    $('img').fadeToggle(-1,function(){
+      console.timeEnd('fade');
+    });
+  });
+
+  
+  // animation
+  // 기준 라인(top,bottom,left,right) 안쪽 이동은 양수, 바깥쪽 이동은 음수 값 적용
+  // 같은 방향 속성끼리 사용
+  $('#toLeft').on('click',function(){
+    $('img').animate({left : '-=10px'}, 100);
+    // $('img').animate({right : '+=10px'}, 100);
+  });
+
+  $('#toRight').on('click',function(){
+    $('img').animate({left : '+=10px'}, 100);
+    // $('img').animate({right : '-=10px'}, 100);
+  });
+
+  $('#btn3').click(function(){
+    $('#p1').css('font-size','+=2px');
+    $('#p2').animate({'font-size':'+=2px'}, 100);
+  });
+
+</script>
+</body>
+</html>

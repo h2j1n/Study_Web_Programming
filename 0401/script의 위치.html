@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#wrapper {
+  border-style: solid;
+}
+</style>
+<script>
+var v_div; //전역에서 선언만
+window.onload = function(){ //load이벤트를 통해 문서에 필요한 모든 리소스 대상을 로딩 후 함수 실행
+    v_div = document.getElementById('wrapper'); //요소 얻어서 초기화는 내부에서
+}
+function f_innrHTML(){
+    console.log(v_div.innerHTML); //get
+}
+</script>
+</head>
+<body>
+    
+    <div id="wrapper">
+        <span style="color: orange;">안녕?           </span>반가워<br>
+        <span style="display: none;">숨겨진 텍스트</span>
+    </div>
+    <input type="button" value="innerHTML" onclick="f_innrHTML()">    
+
+
+</body>
+</html>

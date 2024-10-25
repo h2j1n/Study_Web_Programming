@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <input type="file">
+        <button id="add">파일선택 영역 추가</button>
+    </div>
+
+<script src="../js/jquery-3.7.1.min.js"></script>
+<script>
+    $('#add').on('click',function(){
+        
+        let v_file = "<p>";
+        v_file += "    <input type='file'>";
+        v_file += "    <button class='del'>삭제</button>";
+        v_file += "   </p>";
+        
+        $('div').append(v_file);
+    });
+    
+    //bind x
+    //delegate o
+    $('div').on('click','.del',function(){
+        $(this).parent().remove(); //선택된 삭제버튼의 부모영역에서 모두 지움
+    });
+
+</script>
+</body>
+</html>

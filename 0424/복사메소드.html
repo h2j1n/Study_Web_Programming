@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 복사될 요소를 구분하기 위해 id속성 부여 -->
+    <p id="p1">인수로 true설정시 이벤트처리기도 함께 복사</p>    
+
+    <input type="button" value="clone()">
+    <input type="button" value="clone(true)">
+
+    <div></div>
+    
+<script src="../js/jquery-3.7.1.min.js"></script>
+<script>
+    $('p').on('click',function(){
+        $(this).css('font-size','+=1px');
+    });
+
+    //요소 복사
+    $('[value="clone()"]').on('click',function(){
+        
+        //모든 p로 선택자를 지정했을 경우 배수 복사됨 주의
+        let $cl = $('#p1').clone(); //요소만 복사
+
+        //복사 이후에 완료를 위한 붙여넣기 필요
+        $('div').append($cl);
+    });
+
+    $('[value="clone(true)"]').click(function(){
+        let $clt = $('#p1').clone(true); //이벤트 처리기까지 복사
+        $clt.appendTo($('div'));
+    });
+
+    
+</script>
+</body>
+</html>

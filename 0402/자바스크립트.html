@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    // 데이터 타입
+
+    //기본형(primitive type)
+    // -number, string, boolean, null, undefined, symbol(ES6), binint(ES2020)
+    
+    let v_varb = 100; //최초 선언
+    v_varb = "100"; //재선언 >> 과정에서 문제가 있으므로 let으로 대체하기를 권장
+    v_varb = true;
+    v_varb = null; // type이 object로 표현되는것은 버그 >> 그냥 값도 타입도 null입니다!!
+    v_varb = undefined;
+
+    //null 값을 검증하기 위해 일치 비교 연산자를 사용하기
+    // ==loose, 동등 비교 연산자 vs  === strict, 일치 비교 연산자
+    // console.log("동등 비교..", null == undefined);
+    // console.log("일치 비교..", null === undefined);
+    
+    /* Symbol - ES6에서 추가된 기본형 타입
+                변경 불가한 원시타입
+                다른 속성과 충돌되지 않는 유일성을 보장받는 타입
+                보통 객체의 KEY로 활용됨                         */
+    v_varb = Symbol();
+    
+    /* BigInt - 길이 제약없이 정수를 다루는 숫자형
+                number타입보다 더 큰 정수 표현을 위해 등장함
+                숫자 뒤에 n을 붙이거나 BigInt()를 호출 (ex. 1234n / BigInt(1234))    */
+    v_varb = 100n; //number타입 범위보다 더 큰 범위값을 사용하고자 할때
+    
+    
+    //참조형(Reference Type)
+    // - Object, Array, function
+    v_varb = {}; //빈 객체
+    v_varb = []; //빈 배열
+    v_varb = function(){}; //함수를 값으로 할당
+    
+    // typeof연산자로 데이터 타입 확인하기
+    console.log( typeof v_varb );
+
+    
+    
+    
+</script>        
+</body>
+</html>

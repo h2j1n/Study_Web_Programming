@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+div {
+  border: 3px dotted rebeccapurple;
+}
+img {
+  width: 150px;
+}
+</style>
+</head>
+<body>
+    <input type="file" id="fileBtn" accept=".jpg, .jfif, .png">    
+    <div></div>
+
+<script>
+    // document.querySelector('#fileBtn').onchange=function(){}
+    document.querySelector('#fileBtn').addEventListener('change',function(){
+        let v_file = this.files;
+        console.log(v_file);
+
+        //FileReader객체로 이미지 src정보로 사용할 데이터를 만들어서
+        //동적요소를 생성하고 영역으로 추가하세요
+        let rd = new FileReader();
+        rd.onload = function(){
+            let v_img = document.createElement('img');
+            v_img.src = rd.result;
+            v_img.alt = "이미지";
+
+            document.querySelector('div').append(v_img);
+        }
+        rd.readAsDataURL(v_file[0]);
+
+    });
+    
+    
+    
+    
+</script>
+</body>
+</html>

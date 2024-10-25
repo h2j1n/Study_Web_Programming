@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    console.log("현재 날짜와 시간 반환\r\n", new Date());
+    //기준시 - 1970년 1월 1일 오전 9시
+    console.log("기준시 + milliseconds\r\n", new Date(5000));
+    console.log("문자열로 날짜표기", new Date("2024.4.8"));
+    //year, month[, date, hours, minutes, seconds, ms]
+    //month시작 값은 0이므로 set할때 -1, get할때 +1
+    //year, month는 필수로 지정(year만 넣을 경우 ms로 인식)
+    console.log(new Date(2024,4-1));
+    
+    let today = new Date();
+    console.log( today.toLocaleString() );
+    console.log(today.getTime()); //기준일~오늘까지의 경과시간을 ms로 반환
+
+    let ms = today.getTime(); //1712556350328
+    console.log( ms/1000 + "초");
+    console.log( ms/1000/60 + "분");
+    console.log( ms/1000/60/60 + "시");
+    console.log( ms/1000/60/60/24 + "일");
+    console.log( ms/1000/60/60/24/365 + "년");
+    //단위로 나누는 순간 날짜객체가 ms단위로부터 적용됨
+    console.log( today/1000/60/60/24/365 + "년");
+
+
+    //getFullYear() - 1000 ~ 9999년 사이 값 반환(4자리 연도 정보 제공)
+    //getYear() - 1900년 대상으로 사용되던 메소드(2자리 연도 정보 제공)
+    //            현재 표준에서 제거
+    console.log( today.getYear() ); //2024-1900=124
+    console.log( today.getFullYear() );
+    
+</script>    
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+table {
+  display: inline-block;
+  margin: 0 5px;
+}
+div {
+  border-style: solid;
+}
+</style>
+</head>
+<body>
+<script>
+//문서준비코드
+// window.onload = function(){}; //화면 구성에 필요한 리소스를 모두 준비시킴(ex.멀티미디어/이미지 등 관련)
+document.addEventListener('DOMContentLoaded',function(){ //문서(DOM)만 준비시킴
+
+    let v_div = document.querySelector('div'); //전역 
+    
+    document.querySelector('#print99').addEventListener('click',function(){
+        
+
+        //table요소를 문자열로 생성
+        v_tbl = "";
+        for(let i=2; i<10; i++){
+            v_tbl += "<table border=1>";
+            v_tbl += "<tr><th>" + i + "단</th></tr>";
+            
+            for(let j=1; j<=9; j++){
+                // v_tbl += "<tr><td>" + i + "*" + j + "=" + (i*j) + "</td></tr>";
+                v_tbl += `<tr><td>${i} * ${j} = ${i*j}</td></tr>`;
+            }
+            v_tbl += "</table>";
+        }
+
+        // v_div.innerHTML = v_tbl;
+        v_div.insertAdjacentHTML('afterbegin',v_tbl);
+    });
+
+    //select box 선택한 값으로 구구단 테이블 생성하기
+    document.querySelector('#sel99').addEventListener('change',function(){
+
+        // console.log( this.value ); 
+        let v_tbl = "";       
+        v_tbl += "<table border=1>";
+        v_tbl += "<tr><th>" + this.value + "단</th></tr>";
+        
+        for(let i=1; i<10; i++){
+            v_tbl += `<tr><td>${this.value}*${i}=${this.value*i}</td></tr>`;
+        }
+        v_tbl += "</table>";
+       
+        // v_div.innerHTML = v_tbl;
+        //바깥쪽에 요소가 추가되었을때 단일 항목만 계속 표현될 수 있게 
+        // document.body.innerText = ""; //영역 비우기(초기화)
+        v_div.insertAdjacentHTML('afterend',v_tbl);
+
+
+        console.log(document.querySelectorAll('table').length);
+        
+        let v_tbls = document.querySelectorAll('table');
+        if(v_tbls.length > 1){ //2번째 테이블부터-
+            if(v_tbls.length == 9){ //print99(8)+첫 테이블(1)일때는 제외
+                return;
+            }
+            v_tbls[v_tbls.length-1].remove(); //2번째 테이블부터 지움
+        }
+    });
+});
+</script>
+    <input type="button" value="구구단 출력" id="print99">
+    
+    <select id="sel99">
+        <option value="-">선택</option>
+        <option value="2">2단</option>
+        <option value="3">3단</option>
+        <option value="4">4단</option>
+        <option value="5">5단</option>
+        <option value="6">6단</option>
+        <option value="7">7단</option>
+        <option value="8">8단</option>
+        <option value="9">9단</option>
+    </select>
+    
+    <div>여기가 출력영역이다</div>
+
+</body>
+</html>

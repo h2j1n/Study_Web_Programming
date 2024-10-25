@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<script src="../js/jquery-3.7.1.min.js"></script>
+<script>
+$(function(){
+    
+    let $inputs = $('input');
+
+    //text() - 여러 요소들의 모든 태그를 제외한 정보를 얻음
+    $inputs.eq(0).on('click',function(){
+        console.log(          $('p').text()       );
+    });
+
+    //html() - 여러 요소 중 첫번째 대상의 태그를 포함한 정보를 얻음
+    $inputs.eq(1).click(function(){
+        console.log($('p').html());
+
+        //js의 value속성을 대체하는 val() >> 입력양식 요소 정보 get/set
+        console.log( $inputs.val() ); //첫번째 대상요소의 정보만 얻어냄
+    });
+
+    //each() - jQuery에서 사용하는 반복문 형태
+    $inputs.eq(2).on('click',function(){
+        
+        //선택자 사용 문법
+        $('p').each(function(a,b){ //콜백으로 전달받는 index, value에 대한 매개변수를 사용시에만 선언, 불필요시 생략가능
+            
+            //요소의 반환
+            // console.log( $('p') ); //요소의 갯수만큼 반복적으로 모든 p요소를 반환
+            // console.log("this>> ", this ); //순차적인 요소를 반환
+            // console.log("i>> ", i ); //순차적인 index를 반환
+            // console.log("v>> ", v ); //this와 같이 순차적인 요소를 반환
+            // console.log(">>", $('p').eq(i) ); //p모듬 중 각 index로 접근해 얻어낸 요소
+
+            //요소 정보의 반환
+            // console.log( $('p').text() ); //모든 p요소의 태그를제외한 정보를 n회 반환
+            // console.log( $('p').html() ); //모든 p요소 중 첫번째 항목의 태그를 포함한 정보 n회 반환
+            
+            console.log( $(this).html() ); //순차적인 요소의 정보 반환
+            console.log( $(b).html() ); 
+            console.log( $('p').eq(a).html() ); 
+            console.log( $(b).text() );
+        });
+
+    });
+})
+</script>
+</head>
+<body>
+    <p>1<span>😎</span></p>    
+    <p>2<span>👀👀</span></p>    
+    <p>3<span>🌹🌹🌹</span></p>    
+
+    <input type="button" value="html">
+    <input type="button" value="text">
+    <input type="button" value="each">
+
+    <hr>
+
+    <button>객체 방식 each</button>
+    <button>선택자 방식 each</button>
+   
+<script>
+    let $btns = $('button');
+
+    let obj = {
+        key1   : 'value1',
+        'key2' : 'value2',
+        "key3" : "value3" 
+    };
+
+    $btns.eq(0).click(function(){
+
+        //객체 대상 each문법 - $.each(객체,함수)
+        $.each(obj, function(x,y){
+            console.log(this); //순차적인 객체의 value정보(String)
+            console.log(x);    //순차적인 객체의 key정보
+            console.log(y);    //순차적인 객체의 value정보(string)
+        });
+    });
+
+    $btns.eq(1).on('click',function(){
+
+        //선택자 대상 each문법 - $(선택자).each(함수)
+        //선택자 부분에 객체 대입도 가능
+        $(obj).each(function(a,b){ //객체대상은key/value | 선택자대상은 idx/value
+            // console.log(this); //객체 전체를 반환
+            // console.log(a); //0>> 하나의 객체를 대상으로 하는 index
+            // console.log(b); //this와 동일
+        });
+
+
+        //객체 대상 문법에는 객체만 대상으로 값을 얻을 수 있다 
+        $.each($('p'),function(){ //일반적인 DOM요소-> JQ객체로 변환 시 값을 얻을 수 있다
+            console.log(this);
+            //Cannot use 'in' operator to search for 'length' in p
+            //>>p에서 'length'를 검색하기 위해 'in' 연산자를 사용할 수 없습니다.
+            // >>> 잘못된 대상으로 인한 오류 발생
+
+            // 'in'연산자는 객체에만 동작하는 자바스크립트 내장 연산자
+        })
+    });
+</script>
+    
+</body>
+</html>

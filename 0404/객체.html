@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <button>리터럴 방식</button>    
+    <button>생성자 방식</button>    
+    <button>사용자 정의 방식</button>    
+
+<script>
+  let v_btns = document.querySelectorAll('button');
+
+  v_btns[2].addEventListener('click',function(){
+    //생성자 함수(첫자 대문자 표기) 
+    function CustomObj (teamNm, headCnt, fanClub){
+      this.팀명 = teamNm;
+      this['인원수'] = headCnt;
+      this.팬클럽명 = fanClub;
+      this['info'] = function(){
+        return `${this.팀명}(${this.인원수}) - ${this.팬클럽명}`;
+      }
+    }
+    
+    let instance1 = new CustomObj('아이유',1,'유애나');
+    console.log(instance1.info());
+    
+    let instance2 = new CustomObj('비투비',6,'멜로디');
+    instance2.팀명 = "BTOB";
+    console.log(instance2.info());
+
+    //생성자 함수 수정없이 속성 추가하기
+    instance1.히트곡 = "좋은 날"; //각 객체에 개별 속성 추가
+    CustomObj.prototype.분류 = "가수"; //생성자함수에 공통 속성을 적용
+    CustomObj.prototype.info2 = function(hitSong){
+      if(hitSong) this.히트곡 = hitSong;
+    }
+
+    console.log(instance1.히트곡);
+    console.log(instance2.히트곡);
+    console.log(instance1.분류);
+    console.log(instance2.분류);
+
+
+    
+
+  });
+
+
+  v_btns[1].addEventListener('click',function(){
+    //내장객체의 생성자함수를 이용한 객체 생성
+    let maxim = new Object();
+    maxim.제품명 = "맥심화이트골드";
+    maxim.내용량 = "11.7g";
+    maxim.try = function(){
+      return `${parseFloat(this.내용량) *8} ml정도의 뜨거운 물을 부어 섭취하세요`;
+    };
+
+    console.log(maxim['제품명']);
+    console.log(maxim.내용량);
+    console.log(maxim.try());
+    console.log(maxim['try']());
+
+    console.log( Object.keys(maxim) ); 
+  });
+
+  let strObj = new String("hello");
+  // console.log(typeof strObj, strObj);
+  // console.log( Object.keys(strObj) ); //키 정보만 배열로 반환
+  // console.log( Object.values(strObj) );//밸류 정보만 배열로 반환
+  // console.log( Object.entries(strObj) );//키,밸류 정보를 배열로 반환
+
+  
+
+  v_btns[0].addEventListener('click', function(){
+    //리터럴 방식 객체 생성
+    let dripCoffee = {
+      제품명 : "탄자니아",
+      '식품유형' : '커피',
+      내용량 : '10g',
+      "유통기한" : new Date("2024.10.16"),
+      info : function(){
+          let today = new Date().getTime(); //기준일~오늘까지의 경과시간 구함
+          let expiry = this.유통기한.getTime(); //기준일~유통기한까지의 경과시간 구함
+          let rst = today - expiry; //결과 값이 양수일때 유통기한 경과
+          if(rst > 0) return "유통기한이 지난 제품";
+          return "유통기한: " + this["유통기한"].toLocaleString() + "까지";
+      },
+      brew : function(){
+                                                //정수로 변경 외에도 문자를 분리한 순수한 숫자만 반환
+        return "원두를 뜨거운 물로 1분간 불린 후 " + parseInt(this.내용량) * 12 + "ml 추출";
+      },
+      //ES6- 축약방식으로 변경작성하기(function생략)
+      caution (){
+        return `${this.식품유형} 추출시 화상에 주의하세요~`; //백틱을 이용한 템플릿 리터럴 생성
+      }
+    };
+    console.log( dripCoffee.제품명 );
+    console.log( dripCoffee['제품명'] );
+    // console.log( dripCoffee[제품명] ); //오류 - 변수로 인식함 주의 (반드시 문자열로 key값 설정)
+    console.log( dripCoffee['info']() );
+    console.log( dripCoffee.brew() );
+    console.log( dripCoffee.caution() );
+  });
+
+
+
+    
+</script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h4>점수를 입력 후 학점을 출력하기</h4>
+    <button onclick="f_grade()">점수 입력하기</button>
+    <div id="disp">출력영역</div>
+
+<script>
+function f_grade(){
+
+    let v_score = prompt("점수를 입력하세요", "100점 만점");
+    alert(v_score/10);
+
+    let v_disp = document.querySelector('div'); 
+
+    //범위 내 점수가 아닐 경우
+    if(v_score > 100 || v_score < 0){
+        v_disp.innerText = "점수를 잘 못 입력했슈";
+        return;
+    }
+
+    //출력영역 얻기
+    document.getElementById('disp')
+    document.getElementsByTagName('div')[0]
+    document.querySelector('#disp')
+    
+    document.querySelectorAll('div')[0]
+
+    switch(parseInt(v_score/10)){
+        case 10:
+        case 9:
+            // document.write("A");
+            v_disp.innerText = "A학점";
+            break; 
+        case 8:
+            // document.write("B");
+            v_disp.innerText = "B학점";
+            break; 
+            case 7:
+            // document.write("C");
+            v_disp.innerText = "C학점";
+            break; 
+        case 6:
+            // document.write("D");
+            v_disp.innerText = "D학점";
+            break; 
+        default:
+            // document.write("F");
+            v_disp.innerText = "F학점";
+            break; 
+    }
+}
+    
+    
+    
+    
+</script>
+</body>
+</html>

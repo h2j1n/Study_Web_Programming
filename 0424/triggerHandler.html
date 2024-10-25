@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+:focus {
+  background-color: gold;
+}
+</style>
+</head>
+<body>
+    <button>trigger</button>
+    <button>triggerHandler</button> <br>
+    <input>
+    <input>
+    <input>
+
+<script src="../js/jquery-3.7.1.min.js"></script>
+<script>
+    //focus 이벤트의 기본동작 >> 포커싱 된 요소에 스타일 적용되는 것
+    $('input').on('focus',function(){
+        $(this).val("😢보고있는겨?");
+    });
+    
+    //trigger
+    $('button').eq(0).click(function(){
+        //trigger() - 모든 대상으로 / 이벤트 기본동작 수행/ DOM구조에 따라 이벤트 확산(버블링 됨)
+        $('input').trigger('focus');
+    });
+    
+    
+    //triggerHandler
+    $('button').eq(1).on('click',function(){
+        //triggerHandler() - 첫번째 요소만 대상으로 / 이벤트 기본동작은 수행하지 않고 / 함수만 실행 / 버블링 안됨
+        $('input').triggerHandler('focus');
+    });
+    
+    
+</script>
+    
+</body>
+</html>

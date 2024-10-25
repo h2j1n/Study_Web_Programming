@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+div {
+  width: 70%;
+  height: 70vh;
+  border-style: solid;
+  display: inline-block;
+}
+</style>
+</head>
+<body>
+    <div></div>    
+
+<script>
+    let v_div = document.querySelector('div');
+
+    // v_div.addEventListener('mousedown',function(){});
+    v_div.onmousedown = function(e){
+        //click이벤트는 좌클릭 정보만 제공(0 vs 1)
+        console.log(e.button + " vs " + e.which); //button 한국 which외국
+
+        if(e.button == 0){
+            // v_div.innerText = "왼쪽 누름";
+            v_div.insertAdjacentHTML('beforebegin','<mark>좌클릭</mark>');
+        }else if(e.button == 1){
+            // v_div.innerHTML = "가운데 누름";
+            v_div.insertAdjacentHTML('afterbegin','중클릭<sup>(앞)</sp>');
+            v_div.insertAdjacentHTML('beforeend','중클릭<sub>(뒤)</sb>');
+        }else{
+            // v_div.textContent = "오른쪽 누름";
+            v_div.insertAdjacentHTML('afterend','우클릭');
+        }
+    }
+    
+
+    //우클릭시 메뉴정보가 나타나는 창(contextmenu) 없애기
+    v_div.addEventListener('contextmenu',function(e){
+        e.preventDefault(); //원래 장착된 기능 막기 - contextmenu안띄움
+    });
+
+    
+    
+</script>
+</body>
+</html>

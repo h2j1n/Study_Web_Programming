@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<script>
+    
+    //1.객체 생성하기 - XMLHttpRequest
+    let req = new XMLHttpRequest();
+
+    //2.요청 설정하기 - open(method, url, (async))
+    req.open('get','test.txt'); //url은 보통 서버페이지(servlet, jsp)로 설정함
+
+    //4. 응답 받기 - onreadystatechange , readyState(4), status(200)
+    req.onreadystatechange = function(){
+        console.log(req.readyState); 
+        if(req.readyState == 4 && req.status == 200){
+            //결과받기 - response~
+            console.log("요청한 위치에서 다시 전달해준 응답>>", req.responseText );
+        }
+    }
+    
+    //3. 요청 전달하기 - send() , post일때 send(data)
+    req.send();
+    
+</script>

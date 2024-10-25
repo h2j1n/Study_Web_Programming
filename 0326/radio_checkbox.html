@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+
+    <fieldset>
+        <legend>라디오버튼 영역</legend>
+        남<input type="radio" name="gender" value="남자">
+        여<input type="radio" name="gender" value="여자" checked="checked">
+        <input type="button" value="선택" onclick="f_check()">
+
+    </fieldset>
+
+    <fieldset>
+        <legend>체크박스 영역</legend>
+        <input type="checkbox" name="hobby" value="html" checked>마크업
+        <input type="checkbox" name="hobby" value="css">스타일시트
+        <input type="checkbox" name="hobby" value="javascript">자바스크립트
+        <input type="checkbox" name="hobby" value="server">서버
+        <button onclick="f_chk()">button버튼</button>
+    </fieldset>
+<script>
+function f_chk(){
+    var v_chks = document.getElementsByName('hobby');    // 유사 배열의 값
+    console.log(v_chks);
+    
+    var v_arr =[]; //체크 항목을 담을 빈 배열
+
+    for(var i=0;i<v_chks.length;i++){
+        if(v_chks[i].checked){
+            // 배열에 담기
+            v_arr.push(v_chks[i].value);
+        }
+    }
+    alert("니가 선택한 과목 >> "+ v_arr);
+
+}
+
+function f_check(){
+    var v_rdos = document.getElementsByName('gender')
+    // console.log(v_rdos);
+
+    for(var i=0;i<v_rdos.length;i++){
+        if(v_rdos[i].checked){
+            alert("너는 "+ v_rdos[i].value + "구나");
+        }
+    }
+}    
+</script>
+</body>
+</html>

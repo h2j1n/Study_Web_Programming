@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+.sttBg {
+  background-color: black;
+  color: white;
+}
+.dynmBg {
+  background-color: hotpink;
+  color: lime;
+}
+.fontGold {
+  color: gold;
+}
+</style>
+</head>
+<body>
+    <p>on(event[, childSelector, data], fn) / one(event[, data], fn) / off(event[, selector, fn])</p>
+    <div></div>
+    <button>제거</button>
+    <button>특정요소이벤트제거</button>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script>
+
+    //option인자 중 data >> {key:value}형태로 작성
+    //                      event객체의 data속성으로 key에 접근해 value얻음 
+
+    //on(event,fn)
+    //on(event,data,fn)
+    //현 이벤트는 정적요소를 대상으로 진행됨
+    $('p').on('mouseover',{static:'정적요소-bind방식'},function(e){
+        $(this).toggleClass('sttBg');
+        $(this).text(e.data.static); 
+    });
+
+    //동적p요소 생성
+    $("<p>동적요소1</p><p id='pp'>동적요소2</p>").appendTo('div');
+
+    //동적 요소에 이벤트 부여하기 >> 정적인 부모가 이벤트를 받고, 그를 위임받아 사용
+    //정적부모.on(event,childSelector,data,fn)
+    $('div').on('mouseover','p',{dynamic:'동적요소-delegate방식'},function(event){
+        // console.log(this); //가리키는 대상 확인 >> childSelector
+        $(this).toggleClass('dynmBg');
+        $(this).text(event.data.dynamic); //data를 함수를 통해 전달시 e객체만 가능(비표준은 접근불가)
+    });
+
+    let rmv;
+    //id=pp인 요소만 gold 폰트색 적용
+    $('div').on('mouseover','#pp', rmv = function(){
+        $(this).toggleClass('fontGold');
+    });
+
+    
+    //one(event[, data], fn)
+    $('p').one('dblclick',{once:111},function(e){
+        alert(e.data.once + "번만 실행해줭");
+    });
+
+
+    //off(event[, selector, fn])
+    //              ㄴ셀렉터는 on()에 정의된 대상과 동일한 선택자를 지정해야 가능
+    
+    //버튼 누르면 
+    $('button').eq(0).on('click',function(){
+        //mouseover이벤트 제거하기
+        $('p').off('mouseover'); //정적요소만을 대상으로 이벤트 제거
+
+        //동적대상이벤트는 부모가 갖기에 부모를 대상으로 이벤트 제거해야 함
+        $('div').off('mouseover');
+    });
+
+    //버튼 누르면
+    $('button').eq(1).on('click',function(){
+        //id=pp요소의 mouseover이벤트 중 일부 이벤트인 fontGold-toggle만 제거하기
+        $('div').off('mouseover','#pp',rmv);
+    });
+
+
+
+    
+    
+</script>
+</body>
+</html>

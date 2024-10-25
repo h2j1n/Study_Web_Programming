@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <select id="sido">
+        <option value="">선택하세요</option>
+        <option value="1">대전광역시</option>
+        <option value="2">서울특별시</option>
+        <option value="3">세종시</option>
+        <option value="4">제주시</option>
+    </select>    
+    <select id="gugun"></select>    
+
+    <p>클릭</p>
+    
+<script src="../js/jquery-3.7.1.min.js"></script>
+<script>
+
+    $('#sido').on('change',function(e,index){
+
+        // console.log( $(this).val() ); //this.value
+        let v_sidoVal = $(this).val();
+        let v_opt;
+        if(index == 1 || v_sidoVal == 1){
+            v_opt = "<option>대덕구</option>";
+            v_opt += "<option>동구</option>";
+            v_opt += "<option>서구</option>";
+            v_opt += "<option>유성구</option>";
+            v_opt += "<option>중구</option>";
+        }else if(index == 2 || v_sidoVal == 2){
+            v_opt = "<option>중구</option>";
+            v_opt += "<option>마포구</option>";
+            v_opt += "<option>용산구</option>";
+            v_opt += "<option>서초구</option>";
+            v_opt += "<option>동작구</option>";
+        }else if(index == 3 || v_sidoVal == 3){
+            v_opt = "<option>갑</option>";
+            v_opt += "<option>을</option>";
+        }else{
+            v_opt = "<option>??</option>";
+        }
+
+        // $('#gugun').html(v_opt); //1. 직전 내용 덮어쓰거나
+        $('#gugun').text(""); //2-1.영역 초기화 
+        $('#gugun').append(v_opt); //2-2. 후 추가
+    });
+    
+    //trigger() - 이벤트 강제 실행
+    $('#sido').trigger('change',1);
+    $('#sido option').eq(1).prop('selected',true); //임의선택해줌
+    
+    
+
+    //사용자 정의 이벤트와 그 실행을 강제할 trigger사용
+    $('p').on('customEvent',function(e,a,b){ //첫번째 매개변수는 이벤트 객체, 그 다음부터 parameter
+        // alert(a[1] + a[2]);
+    });
+
+
+    //사용자 정의 이벤트를 강제 실행
+    //여러 데이터 전달시 array, object사용
+    // $('p').trigger('customEvent',['대덕인재개발원','ddit']); //각 매개변수로 전달
+    $('p').trigger('customEvent',{1:'대덕인재개발원',2:'ddit'}); //하나의 매개변수로 전달
+    
+    
+</script>
+</body>
+</html>

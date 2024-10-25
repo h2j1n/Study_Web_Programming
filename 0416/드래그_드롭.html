@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style type="text/css">
+div {
+  border: 1px dashed cornflowerblue;
+  height: 200px;
+}
+img {
+  width: 100px;
+}
+</style>
+</head>
+<body>
+    <div>드롭 위치</div>
+    <div>드롭 위치</div>
+    <div>드롭 위치</div>
+    <img src="../images/iu.png" id="iu" alt="" draggable="true">
+    <img src="../images/cha.jpg" id="cha" alt="" draggable="true">
+
+<script>
+/* 
+    드래그 대상 요소
+        - draggable=true 속성 적용
+        - dragstart 이벤트 >> dataTransfer.setData로 타겟id 지정 
+        
+    *dataTransfer : 드래그-드롭에 반드시 필요한 객체, 데이터를 담는 역할
+    
+    드롭 대상 요소
+        - dragover 이벤트 >> (기본적으로 요소는 중첩될 수 없음) 중첩된 상태의 이벤트를 중지(제거)시켜 드롭 허용 상태로 만듦
+        - drop 이벤트 >> dataTransfer.getData로 받은 id를 타겟위치에 append
+*/
+
+// document.querySelector('img').ondragstart = function(){}
+    document.querySelector('img').addEventListener('dragstart',function(e){
+        // console.log( e.target.id );
+        e.dataTransfer.setData("tgId",e.target.id); //드래그 대상요소의 id정보 setting
+    });
+
+    let v_div = document.querySelector('div');
+    v_div.addEventListener('dragover',function(e){
+        e.preventDefault(); //드래그오버의 이벤트 상태를 중지시켜서 드롭허용상태로 만듦
+    });
+    v_div.ondrop = function(){
+        let targetId = event.dataTransfer.getData("tgId");
+        console.log(targetId);
+
+        v_div.append(document.querySelector("#" + targetId));
+    }
+</script>
+</body>
+</html>

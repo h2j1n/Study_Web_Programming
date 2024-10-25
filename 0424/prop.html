@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h4>요소 상태 제어</h4>
+    <form>
+        <input type="checkbox" id="chk" checked>
+        <input type="radio" id="rdo">
+        <select id="sel">
+            <option value="">-</option>
+            <option value="1">일</option>
+            <option value="2">이</option>
+            <option value="3">삼</option>
+            <option value="4">사</option>
+        </select>
+        <input type="text" value="가나다" id="txt" readonly>
+
+        <input type="button" value="현재 상태 값 출력" id="runBtn">
+        <input type="button" value="반대 상태로 변경" id="chgBtn">
+    </form>
+
+    <hr>
+
+    <div>
+        <input type="checkbox" id="chkAll">전체선택
+        <input type="checkbox" class="chk">1
+        <input type="checkbox" class="chk">2
+        <input type="checkbox" class="chk">3
+        <input type="checkbox" class="chk">4
+        <input type="checkbox" class="chk">5
+    </div>
+    
+<script src="../js/jquery-3.7.1.min.js"></script>
+<script>
+
+    //전체선택 항목으로 제어하기
+    $('#chkAll').on('click',function(){
+        let allChk = $(this).prop('checked'); //상태 값을 boolean으로 반환받음
+        // console.log(allChk);
+
+        //전체선택 뒤쪽 형제 요소들 선택하기
+        //1. 클래스로 접근하기
+        // $('.chk').prop('checked',allChk);//set
+        //2. 전체선택 요소를 기준으로 형제요소 선택 - nextAll()
+        // $(this).nextAll().prop('checked',allChk);
+        //3. parent():부모요소찾기, find():하위요소찾기
+        $(this).parent().find('.chk').prop('checked',allChk);
+    });
+
+    //개별 선택 항목으로 제어하기
+    $('.chk').on('click',function(){
+
+        //클릭시 체크된 갯수 얻기
+        // console.log( $('.chk:checked').length );
+        
+        let $chkbox = $('.chk').length; //class=chk인 항목의 갯수,5
+        let $choose = $('.chk:checked').length; //실제 체크된 항목의 갯수
+
+        if($chkbox == $choose){
+            //전체선택 checked상태 true
+            $('#chkAll').prop('checked',true);
+        }else{
+            //전체선택 checked상태 false
+            $('#chkAll').prop('checked',false);
+        }
+        
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    let $chk, $rdo, $sel, $txt; //전역 선언
+
+    $('#runBtn').on('click',function(){
+
+        $chk = $('#chk').prop('checked');
+        $rdo = $('#rdo').prop('checked');
+        $sel = $('#sel option').eq(2).prop('selected');
+        $txt = $('#txt').prop('readonly');
+        
+        console.log( "체크박스>> ", $chk );
+        console.log( "라디오버튼>> ", $rdo );
+        console.log( "콤보박스>> ", $sel );
+        console.log( "텍스트필드>> ", $txt );
+    });
+
+    $('#chgBtn').click(function(){
+        // prop(속성명,속성값)
+        $('#chk').prop('checked',!$chk);
+        $('#rdo').prop('checked',!$rdo);
+        $('#sel option').eq(2).prop('selected',!$sel);
+        $('#txt').prop('readonly',!$txt);
+    });
+
+    
+</script>    
+</body>
+</html>

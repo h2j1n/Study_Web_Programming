@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+span::after {
+  color: green;
+  content: "\ac1d";
+}
+</style>
+</head>
+<body>
+    <span>&#44061;</span>
+<script>
+    /* 문자열
+      기본 타입은 객체가 아니며 속성과 메소드가 존재하지 않는 데이터
+      문자열 변수 선언시,
+      javascript 엔진은 내부적으로 new String()을 호출하여 임시적으로 기본타입을 래퍼객체로 변환
+    
+      자바스크립트에는 null, undefined을 제외한 5가지 기본타입을 래핑하는 래퍼객체가 있다
+      >> 기본 타입은 속성과 메소드를 정의할 수 없고, 래퍼 객체가 제공하는 속성과 메소드만을 이용해 값을 처리할 수 있다
+    
+      원시 값 처리 과정 >> 임시/암묵적으로 래퍼객체로 변환되어 처리 후 메모리에서 삭제되는 형태
+  */
+
+    let v_str = "String객체는 원시 타입인 문자열을 다룰 때 유용한 프로퍼티와 메소드를 제공하는 WRapper객체";
+
+    console.log(v_str.charAt(0)); //객, index위치의 문자를 반환(indexOf기능과 반대)
+
+    console.log(v_str.charCodeAt(6)); //index위치의 문자를 유니코드(아스키코드)로 반환
+    console.log(v_str.charCodeAt(6).toString(16));
+
+    /* 아스키코드와 유니코드  (https://stepbystep1.tistory.com/10) (https://www.charset.org/utf-8/45)
+
+    ASCII (American Standard Code for Information Interchange, 미국 정보 교환 표준 부호)
+        컴퓨터는 문자를 숫자로 기억하고 표현하므로 공통으로 쓸 표준 규격 필요 >> 1967년 알파벳에 기초를 둔 문자 인코딩 탄생
+        
+        0~127(7bit/나머지 1bit는 에러검출용)까지의 숫자로 문자를 표현(제어,공백,구두점,숫자,알파벳)
+        (1byte(8bit)로 구성 - 7bit사용(2^7=128) / 나머지1bit는 parity Bit라는 오류체크용 비트로 사용)
+        8bit(2^8=256)로 확장된 ANSI코드 출현에도 전세계의 문자를 나타내기 부족
+
+    unicode
+        전세계 모든 글자들을 표현할 수 있는 표준 코드
+        종류는 utf-8, utf-16 등 이 있으며, 
+        utf-8은 웹 페이지에서 사용되는 유니코드 인코딩(컴퓨터가 인식할 수 있는 형태로 만들어 주는 것) 방식
+        
+        통상적으로 2byte(16bit) >> 2^16=65535개의 문자 표현
+        *문자 인코딩을 위해 1btye ~ 4byte(최대6byte)까지 동적으로 사용되며, 
+        영문/숫자/기호는 1바이트로, 한글과 한자 등은 3byte로 인코딩
+        0~127까지는 아스키코드와 유니코드가 동일한 의미를 갖음
+
+    euc-kr
+        2byte로 한글을 표현한 인코딩 방식
+
+    Hex(hexadecimal,16) | D Dec(decimal, 10) | Oct(octal, 8) | Bin(binary, 2)
+    */
+    
+    //indexOf, lastIndexOf(searchVal, str), 못찾으면 -1
+    // console.log( v_str.indexOf('string') ); //0
+    console.log( v_str.lastIndexOf('객체',53) ); //6
+    
+    //concat() - 여러 문자열을 연결(더하기 연산자와 기능 동일) / (Array-여러 배열 연결하기)
+    let a = "Ap";
+    let b = "pl";
+    let c = "eeee";
+    let abc1 = a.concat(b).concat(c);
+    let abc2 = a.concat(b,c);
+    let abc3 = a + b + c;
+   
+    console.log(abc1, abc2, abc3);
+    
+    //trim() - 앞뒤 공백 제거(데이터 사이 공백은 유지)
+    let data = "        짱 구          ";
+    console.log(data.length);
+    data = data.trim(); //메소드가 적용된 값을 변수에 다시 대입해서 결과 확인
+    console.log(data.length);
+    
+    //replace(찾은값,변경할값) - 찾는 대상의 첫번째 항목만 변경됨
+    //       ㄴ찾는 대상을 여러개로 할 경우, replaceAll 또는 정규식을 활용할 것
+    // let v_new = v_str.replace('객체','Object');
+    let v_new = v_str.replace(/객체/g,'오브젝트');
+    // let v_new = v_str.replaceAll('객체','Object');
+    console.log(v_str);
+    console.log(v_new);
+
+    //*정규식 - 문자를 표현하는 공식
+    //         특정 규칙이 있는 문자열을 검색하거나 치환하는 용도로 사용한다
+
+    //search() - 문자열 또는 정규식을 이용해서 위치index를 반환받음
+    //         indexOf()와의 차이점: 문자 대신 정규식도 이용가능, 검색범위지정x
+    console.log( v_str.search(/r/) );
+
+
+    //match() - 정규식으로 요소를 검색해 배열로 반환하며, 대상이 없을 때 null반환
+    console.log( v_str.match(/r/gi) );
+    console.log( v_str.match(/x/gi) );
+    
+
+    //substring(str,end), slice(str,end), substr(str,length) - 부분 문자열 추출
+    // (공통) 2번째 인자 생략시 데이터의 끝까지 반환
+    // (slice, substr) 음수 지정시 데이터 끝범위부터 갯수만큼 값 반환
+    console.log( v_str.substring(6,8) ); //객체 
+    console.log( v_str.slice(6,8) ); //객체 
+    console.log( v_str.substr(6,2) ); //객체 
+    console.log( v_str.substr(-4) ); //
+
+
+    //split(구분자,반환갯수) - 문자열을 구분자로 나누어 배열로 반환
+    console.log( v_str.split() ); //구분자 없을 때 하나의 배열로 반환
+    console.log( v_str.split(" ",4) ); //구분자를 공백으로 나눠 배열로 반환
+
+
+    //기본 형(primitive type) 문자열에 메소드가 접근하는 순간,
+    // 임시적인 래퍼 객체로 변화하면서 제공하는 메소드를 사용할 수 있게됨
+    // 기본적으로 기본형 데이터를 불변(값이 변할 수 없음)이므로,
+    // 참조형태로 값을 얻어 확인할 수는 있지만 값의 변경은 불가하다
+    let v_apple = "사과와애플";
+    console.log(v_apple[2]);//와
+    v_apple[2] = "&"; 
+    console.log(v_apple); //변경안됌
+    
+
+
+    
+</script>    
+</body>
+</html>

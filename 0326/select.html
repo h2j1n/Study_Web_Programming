@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <select id="id_sel" onchange="f_sel(this)">
+
+        <option value="0">선 택</option>
+        <option value="heartping">하츄핑</option>
+        <option value="happing">해핑</option>
+        <option value="shyping">부끄핑</option>
+        <option value="nonoping">시러핑</option>
+        <option value="lovping">바네핑</option>
+        <option value="coolping">덜덜핑</option>
+        <option value="sleeping">코자핑</option>
+
+    </select>
+<script>
+function f_sel(p_this){
+    // console.log(id_sel, document.getElementById('id_sel'),p_this);
+    // console.log(p_this.value); // select의 단일 선택값은 value로 간단히 얻음
+    // console.log(p_this.innerHTML); // 요소 내부의 모든 정보를 반환
+
+    console.log("항목의 index>>",p_this.selectedIndex)
+
+    // getElement~는 속성선택자를 통해 요소 검색이 안되므로 querySelector로 대체
+    // var v_opt = document.querySelector('option[value='+p_this.value+']');
+    // console.log(v_opt.innerHTML);
+
+    console.log(p_this.options[p_this.selectedIndex].innerHTML);
+}   
+</script>
+</body>
+</html>

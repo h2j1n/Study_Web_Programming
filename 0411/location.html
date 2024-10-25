@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 우선순위는 인라인 방식이 가장 높음 -->
+    <a href="//daum.net">DAUM</a>
+    <input type="button" value="reload_replace">
+
+<script>
+    document.querySelector('a').addEventListener('click',function(){
+        //인라인 스크립트로 적용된 href=daum이 우선 적용됨
+
+        event.preventDefault(); //이벤트 대상의 기본기능을 정지시키는 메소드
+        // location.href = "//naver.com"; //이동될 페이지 설정, 일반적으로 많이 사용
+        location.assign("//google.com"); //href와 같은 기능
+    });
+
+    document.querySelector('input').addEventListener('click',function(){
+
+        console.log(window.location); //이거로 더 많이 접근
+        console.log(document.location);
+        console.log(location.href); //현재 페이지 전체 url반환
+        console.log(document.URL); //현재 페이지 전체 url반환
+
+        //reload() - 새로고침
+        // location.reload();
+        location.replace(location.href); //reload()처럼 동작
+
+        //replace() - 정해진 위치경로로 이동
+        location.replace('//naver.com'); //이전 페이지로 이동 불가
+
+        /* 
+            href vs replace
+
+            href - 페이지가 '이동'되므로 이전 페이지로 이동 가능
+                    history에 기록되면서 캐시된 페이지를 보여주거나 서버에 요청 
+            replace - 페이지가 '변경'되므로 이전 페이지로 이동 불가
+                    history에 캐시되지 않으므로 항상 서버에게 페이지를 요청함
+        
+        */
+        
+    });
+
+
+    
+</script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+div {
+  border-style: solid;
+  padding: 30px;
+}
+</style>
+</head>
+<body>
+    <div>랜덤색 표현</div>    
+    <input type="button" id="ranColor" value="랜덤칼라">
+    <input type="button" id="stop" value="중지">
+
+<!-- 외부javascript파일 참조 -->
+<script src="../js/random.js"></script>
+<script>
+    let v_div = document.querySelector('div');
+
+    // document.querySelector('#ranColor').addEventListener(...)
+    let v_ranColor = document.querySelector('#ranColor');
+    v_ranColor.addEventListener('click', ranClr = function(x,y){
+
+        v_div.innerText = "전달된 정보>>" + x + y;
+
+        //10진수를 활용한 rgb(R0~255,g,b)방식 색 만들기
+        let random10 = []; //각 RED, GREEN, BLUE영역에 담길 0~255범위 랜덤수를 저장할 배열
+    
+        for(let i=0; i<3; i++){
+            random10[i] = random(0,255);
+        }
+        // console.log(random10);
+
+        //rgb()
+        v_div.style.backgroundColor = "rgb(" + random10 + ")";
+
+        //-------------------------------------------------------
+
+        //16진수를 활용한 색 만들기
+        let random16 = []; //16진수 정보를 저장할 배열
+        
+        for(let i=0; i<3; i++){
+            const RND = random(0,255); //10진수 랜덤수 생성
+            
+            //★10진수에서 16진수로 변환되는 과정에서 0~15범위의 값이 1자리로 변환되는 문제 
+            // let testRnd = random(0,15); //10진수
+            // console.log(testRnd, "<- 10 | 16 ->", testRnd.toString(16));
+
+            //1자리 정보를 2자리 정보로 치환하기
+            if(RND.toString(16).length == 1){
+                random16[i] = "0" + RND.toString(16);
+            }else{
+                random16[i] = RND.toString(16); //10진수 -> 16진수로 변환
+            }
+        }
+        console.log(random16);
+
+        // #RRGGBB
+        //join() 배열을 문자열로 합치기>> 구분자 생략시 콤마가 삽입되므로 ""하여 구분자없이 합치기
+        let rst = random16.join("");
+        // console.log(random16, "|" ,rst );
+        // v_div.style.color = "#" + random16; //#f1,ee,47 >> 색상표현이 불가
+        v_div.style.color = "#" + rst;
+    });
+
+    //지정된 ms경과시 fn 1회 호출
+    // setTimeout(ranClr,2000); //페이지 로딩 후 1초 후에 함수호출
+    let timer = setInterval(ranClr, 1500, "apple",'banana'); //1.5초마다 함수호출
+
+    document.querySelector('#stop').addEventListener('click',function(){
+        //대상을 공유하여 기술적으로 처리에는 문제가 없으나 혼란을 막기위해 혼용 사용을 지양
+    //    clearInterval(timer);
+       clearTimeout(timer);
+    });
+
+
+</script>
+</body>
+</html>

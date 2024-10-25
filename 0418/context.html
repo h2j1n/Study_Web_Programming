@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <form id="frm1">
+        <input>
+    </form>    
+    <form id="frm2">
+        <input>
+    </form>    
+    <form id="frm3">
+        <input>
+    </form>    
+
+<script src="../js/jquery-3.7.1.min.js"></script>
+<script>
+    //$(selector[,context]) - 선택자를 검색할 범위 설정, 생략시 문서 전체에서 검색됨
+    // $('input','#frm2').css('color','red').css('background-color','gold')
+    //                     .css('textDecoration','line-through'); //메소드 체이닝으로 대상에  여러 속성 정의
+
+    $('form').on('click',function(){
+        $('input').css('backgroundColor','white');
+        $('input',this).css('backgroundColor','green');
+    });
+    
+</script>
+</body>
+</html>

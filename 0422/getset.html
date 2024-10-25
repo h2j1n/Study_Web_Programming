@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div data-num="n1">디브1</div>
+    <div data-num="n4">디브2</div>
+    <div data-num="n7">디브3</div>
+    <div data-num="n10">디브4</div>
+
+    <input name="n_txt" value="aa">
+    <input name="n_txt" value="bb">
+    <input name="n_txt" value="aa">
+    <input name="n_txt" value="bb">
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script>
+    // 1. 두번째 div요소의 내용을 텍스트 필드에 넣기
+    // console.log($('div').eq(1).text());  // 2번째 div의 text 값
+
+    $('input').val($('div').eq(1).text()); // 일괄 setting
+
+    // 2. 첫번째와 네번째 텍스트 필드의 내용을 'DIV'로 바꾸기   -vla(fn)
+    $('input').val(function(i,v){
+        // console.log("i >> ",i,"v >> ",v);
+        if(i==0 || i ==3){
+            return "DIV";
+        }
+        return v;       // val() 셋팅 시 조건외 항목도 값 반환이 반드시 필요
+    })
+    
+    // 3. 두번째와 세번째 div요소의 내용을 'div'로 바꾸기   -text(fn)
+    $('div').text(function(i,v){
+        // console.log("i >> ",i,"v >> ",v);
+        if(i==1 || i ==2){
+            return "div"+(i+1);
+        }
+        // text, html() 셋팅 시 조건외 항목은 기존내용을 유지함으로 값 반환 필요없음
+    })
+    
+    // 4. input 태그 중에 value의 값이 bb인 것만 속성 type을 checkbox로 바꾸기
+    $('input').val(function(i,v){
+        // console.log(i,v);
+        if(v == "bb"){
+            console.log( this );  // this로 해당 조건의 요소를 반환받음
+            // this.setAttribute('type','checkbox');   // js
+            $(this).attr('type','checkbox');    //jq
+
+            // this.outerHTML += v;     // js, 요소 외부에 정보 삽입
+            $(this).after(v);    //jq, 요소 외부에 삽입
+        }
+        return v;   // 조건 외 항목 값 반드시 반환
+        
+    })
+
+    // 5. div 요소에 문자 "d" 가 있는 항목만 스타일 변경하기
+    $('div').html(function(i,v){
+        console.log(i,v);
+
+        // indexOf()로 문자 존재 여부 판단
+        console.log(v.indexOf('d'));    // 현재 d 가 존재하는 위치를 index '0'으로 제공
+
+        // js는 조건문에 조건을 동적으로 변경시켜줌
+        // 0 또는 빈 문자열 > false 로 자동 변환
+        // 0이 아닌 숫자 또는 문자열 >> true로 자동변환
+        if(!v.indexOf('d')){    // 현재 d가 존재하는 항목 대상으로
+            // 해당 항목 스타일 변경하기
+            this.style.color="red";
+            $(this)
+        }
+    })
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+  let v_arr = ["문동은","박연진","주여정","강현남","하도영","박연진","전재준","이사라","최혜정","손명오"];
+  
+  //indexOf(value, start) - 앞에서부터 value를 검색해 해당 값의 위치index를 반환받음, 검색 시작 범위 index 지정
+  //lastIndexOf(value, end) - 뒤에서부터 value를 검색해 해당 값의 위치index를 반환받음, 검색 끝 범위 index 지정
+  //(공통) 없는 대상은 -1을 반환
+    
+  // console.log( v_arr.indexOf('박연진') ); //1
+  // console.log( v_arr.indexOf('박영진') ); //-1
+  // console.log( v_arr.indexOf('박연진',2) ); //5
+  
+  // console.log( v_arr.lastIndexOf('박연지') ); //5
+  // console.log( v_arr.lastIndexOf('박연진',4) ); //1
+
+    
+  //push(배열의 끝에 추가), pop(배열의 끝 요소를 삭제후 반환)
+  //unshift(배열의 시작에 추가), shift(배열의 시작 요소를 삭제후 반환)
+  // v_arr.unshift("손오공","저팔계","삼장법사");
+  // console.log("추가후",v_arr);
+  // let rtn = v_arr.shift(); //손오공 삭제후 반환
+  // console.log("삭제후",v_arr);
+  // console.log("반환된 정보", rtn);
+    
+
+  // console.log("배열 순서 뒤집기", v_arr.reverse());
+    
+
+  //sort()
+  let v_numArr = [12,100,230,32,300,24,512];
+  //정렬 - 인수가 없는 sort() >> 사전순 정렬
+  // console.log( v_numArr.sort() );
+
+  // 인수로 정렬함수를 넣었을 때 >> 크기순 정렬
+  // console.log( v_numArr.sort(function(a,b){return a-b;}) ); //오림차순
+  // console.log( v_numArr.sort(function(a,b){return b-a;}) ); //내림차순
+
+
+  //slice(str,end) - 지정된 범위를 새 배열로 만듦
+  let triangle = v_arr.slice(4, 7); //end범위는 미포함된다(=직전 정보까지 얻음)
+  // let triangle = v_arr.slice(4); //end생략시 배열의 끝정보까지 얻음
+  // console.log(triangle);
+    
+    
+  //splice(index, n, a, b, c, ...) - 배열의 수정(삭제 및 추가)
+  //splice(대상위치, 삭제할 갯수, 추가a, 추가b, 추가c, ...)
+  // console.log(v_arr);
+  // v_arr.splice(2,2,"주여정(이도현)","강현남(염혜란)");
+  // console.log(v_arr);
+    
+  
+  //concat() - 배열 합치기
+  let a = v_arr.slice(5); //end가 생략되었으므로 배열정보를 끝까지 받아옴
+  let b = ["동은",5,'적'];
+  let c = ['the','글로리'];
+  console.log( a.concat(b,c) );
+  let abc = a.concat(b).concat(c);
+  console.log( abc );
+
+    
+  //join() - 배열을 하나의 문자열로 변환하며, 구분자 생략시 콤마로 표시
+  console.log( abc.join(" _") );
+    
+</script>
+</body>
+</html>

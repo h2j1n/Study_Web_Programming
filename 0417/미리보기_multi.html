@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+div {
+  border: 3px dotted rebeccapurple;
+}
+img {
+  width: 150px;
+}
+label {
+  background-color: lightgray;
+  border: 3px outset white;
+  outline: 1px outset lightgray;
+}
+input {
+  display: none;
+}
+</style>
+</head>
+<body>
+    <!-- label - 입력양식요소의id와 label의 for속성을 매칭시켜 입력양식요소를 대체하거나,
+                그 영역을 안내하는 역할(웹접근성관련요소) -->
+    <label for="fileBtn">내가대체할버튼이다</label>
+    <ol></ol><!-- 자식요소인 li는 스크립트에서 동적생성 -->
+    <input type="file" id="fileBtn" multiple accept=".jpg, .jfif, .png">    
+    <div></div>
+
+<script>
+    document.querySelector('#fileBtn').onchange=function(){
+        let v_file = this.files; //파일리스트 여러개
+
+        // for(let i=0; i<v_file.length; i++){
+        for(let i=0; i<5; i++){
+
+            let rd = new FileReader();
+            rd.onload = function(){
+                //이미지 생성
+                let v_img = document.createElement('img');
+                v_img.src = rd.result;
+                v_img.alt = "이미지";
+    
+                //리스트(li) 생성
+                let v_li = document.createElement('li'); //<li></li>
+                v_li.innerText = v_file[i].name;
+
+                document.querySelector('div').append(v_img);
+                document.querySelector('ol').append(v_li);
+            }
+            rd.readAsDataURL(v_file[i]); //여러개 중 n번째
+        }
+
+    }
+    
+    
+    
+    
+</script>
+</body>
+</html>

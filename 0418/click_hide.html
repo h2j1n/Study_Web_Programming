@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <h4 onclick="f_fnc(this)">클릭하면 사라져유🤣</h4>
+    <h4 onclick="f_fnc(this)">클릭하면 사라져유😁</h4>
+    <h4 onclick="f_fnc(this)">클릭하면 사라져유😜</h4>
+    <h4 onclick="f_fnc(this)">클릭하면 사라져유😒</h4>
+    <h4 onclick="f_fnc(this)">클릭하면 사라져유😂</h4> -->
+
+    <h4>클릭하면 사라져유🤣</h4>
+    <h4>클릭하면 사라져유😁</h4>
+    <h4>클릭하면 사라져유😜</h4>
+    <h4>클릭하면 사라져유😒</h4>
+    <h4>클릭하면 사라져유😂</h4>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+    //js
+    let v_h4s = document.getElementsByTagName('h4'); //유사배열
+
+    /* for(let i=0; i<v_h4s.length; i++){
+       //모든 요소에 클릭이벤트 부여하기
+       v_h4s[i].addEventListener('click',function(){
+            // alert(this.innerText);        
+            this.style.display = "none";
+       });
+    } */
+
+    //jq
+    // let $v_h4s =  $('h4');
+    $('h4').on('click',function(){
+       $(this).hide();
+    });
+
+function f_fnc(p_this){
+    console.log(p_this);
+    //js 숨기기 (display none)
+    // p_this.style.display = "none";
+    //jq 숨기기 ( hide() )
+    $(p_this).hide();
+}
+</script>
+</body>
+</html>

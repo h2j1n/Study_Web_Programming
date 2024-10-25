@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- 다운로드방식 -->
+<!-- <script src="../js/jquery-3.7.1.min.js"></script> -->
+<!-- CDN방식 -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<!-- <script>
+// window.onload = function(){
+// window.addEventListener('load',function(){ // DOM과 모든 리소스가 모두 로딩되고 함수실행
+document.addEventListener('DOMContentLoaded',function(){ //DOM만 로딩하고 함수실행
+    let v_h4 = document.querySelector('h4');
+    alert(v_h4.innerText + "😎");
+    // let $v_h4 = $('h4'); //h4라는 DOM객체(js객체)를 jQuery객체로 변환하여 반환
+    // alert( $v_h4.text() + "🌹🌹🌹🌹" );
+});
+ 
+//jQuery코드
+// $(document).ready(function(){}); //3.0에서부터 제외, 대체할 수 있는 축약코드 사용
+$(function(){
+    // let v_h4 = document.querySelector('h4');
+    // alert(v_h4.innerText + "😎😎😎");
+    let $v_h4 = $('h4'); //h4라는 DOM객체(js객체)를 jQuery객체로 변환하여 반환
+    alert( $v_h4.text() + "🌹" );
+});
+</script> -->
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h4>안녕하세요</h4>
+</body>
+<script>
+    //js
+    console.log( document.querySelector('h4').innerText + "✌난자바스크립트" );
+    //jq
+    console.log( $('h4').text() + "난제이쿼리🤞" );
+</script>
+</html>

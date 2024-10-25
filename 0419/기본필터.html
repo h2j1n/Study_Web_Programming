@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+$(document).ready(function(){
+	
+	// $('li:first, li:last').css('background-color', 'yellow');
+  $('li').first().css('background-color', 'yellow');
+  $('li').last().css('background-color', 'purple');
+	// $('li:eq(4)').css('font-style', 'italic');
+	$('li').eq(4).css('font-style', 'italic').css('color','blue');
+	
+	// $('li:lt(4)').css('color', 'green');
+	// $('li:gt(4)').css('color', 'brown');
+  // :lt와 :gt는 slice()로 대체 사용
+  // String객체의 slice()와 같은 규칙을 사용
+  // str ~ end직전 범위로 선택하며, end생략시 영역의 끝까지 선택함
+  $('li').slice(0,4).css('color', 'green');
+  $('li').slice(5).css('color', 'brown');
+	
+	$('li:odd').css('border-style','dotted');
+	$('li:even').css('border-style','double');
+	$('li:not(.not)').css('textDecoration','line-through');
+});
+</script>
+<body>
+  <h4>기본필터</h4>
+  <ul>
+    <li>:first</li>
+    <li>:last</li>
+    <li>:eq(index)</li>
+    <li>:gt(index)</li>
+    <li>:lt(index)</li>
+    <li class="not">:odd</li>
+    <li class="not">:even</li>
+    <li class="not">:not(select)</li>
+  </ul>
+</body>
+</html>

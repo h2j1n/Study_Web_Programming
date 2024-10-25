@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+div {
+  border: 2px solid blue;
+}
+</style>
+</head>
+<body>
+    <div id="id_div">
+        <span>디브안에 스팬1</span>
+        <span>디브안에 스팬2</span>
+        <span>디브안에 스팬3</span>
+    </div>    
+
+<pre>
+ [Node관계]
+   노드 대상 속성(요소노드만 대상 속성)
+ - parentNode(parentElement)
+ - childNodes(children)
+ - firstChild(firstElementChild)
+ - lastChild(lastElementChild)
+ - nextSibling(nextElementSibling)
+ - previousSibling(previousElementSibling)
+</pre>
+
+<script>
+    let v_parent = document.querySelector('#id_div');
+    let v_child = document.querySelectorAll('span');
+
+    console.log("자식으로부터 부모노드 접근", v_child[2].parentNode );
+    //노드 속성으로 접근시 눈에 보이지 않는 기타 노드까지 반환
+    console.log("부모로부터 자식노드들 접근", v_parent.childNodes ); 
+    //요소 노드만을 대상으로 반환
+    console.log("부모로부터 자식요소노드들 접근", v_parent.children ); 
+
+    console.log( v_parent.firstChild ); //줄넘기기호를 포함한 공백(text) 노드
+    console.log( v_parent.firstElementChild ); //span1
+
+    //나머지 속성은 각자 한번씩 확인할 것
+    
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <fieldset>
+        <legend>:visible :hidden</legend>
+        <p>보이는 문단</p>
+        <p style="visibility: hidden;">숨겨진 문단</p>
+        <p style="display: none;">자리를 차지하지 못한 문단</p>
+        <p style="opacity: 0;">투명한 문단</p>
+
+    </fieldset>
+
+    <button>:visible</button>
+    <button>:hidden</button>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script>
+    let $btns = $('button');
+
+    $btns.eq(0).on('click',function(){
+        $('p:visible').each(function(){
+            console.log(this.innerText);    // visibility = hieen 적용된 텍스트가 출력
+            console.log(this);
+        });
+    });
+
+    $btns.eq(1).click(function(){
+        $('p:hidden').each(function(i,v){
+            console.log(v);
+        });
+    });
+
+</script>   
+</body>
+</html>

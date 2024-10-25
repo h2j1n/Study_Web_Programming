@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+img {
+  width: 120px;
+  height: 160px;
+}
+</style>
+</head>
+<body>
+    <!-- 
+        요소(태그) 내부에 정의하는 스타일 => 인라인 스타일 정의
+        inline style정의는 권장하지 않으며 css로 처리할 것을 권장
+    -->
+    <img src="./suzy.jfif" alt="너무이뻐수지">
+    <!-- width="100px;" height="100px;" -->
+
+    <img src="D:\A_TeachingMaterial\05_JQuery\vscode\images\cha.jpg" alt="차은우">
+    <!-- 
+        절대 경로: 웹 페이지나 파일이 가지고 있는 고유 경로
+        *프로젝트 외부에 존재하는 파일은 보안상의 이유로 접근 불가
+
+        상대 경로: 현재 위치를 기준으로 지정하는 경로
+        /   웹 리소스 시작 위치(=최상위 디렉토리)
+        ./  현재 위치
+        ../ 현재 위치의 상위(=부모위치)
+    -->
+
+    <img src="../images/iu.png" alt="아이유1">
+    <img src="/images/iu.png" alt="아이유2">
+
+
+</body>
+</html>

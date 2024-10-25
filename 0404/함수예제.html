@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" size="1">
+    <input type="button" value="+" onclick="f_calc('+')">
+    <input type="button" value="-" onclick="f_calc('-')">
+    <input type="button" value="*" onclick="f_calc('*')">
+    <input type="button" value="/" onclick="f_calc('/')">
+    <input type="text" size="1">
+
+    <br><br>
+    <fieldset>
+        <legend>결과</legend>
+        <p>수1</p>
+        <p>수2</p>
+        <p>계산 결과</p>
+    </fieldset>
+<script>
+
+    //요소 얻기
+    let inputs = document.querySelectorAll('[type="text"]');
+    let pTag = document.querySelectorAll('p');
+    console.log(inputs[1]);
+
+    function f_calc(p_arg){
+        // alert("넘어온>>" + p_arg);
+        pTag[0].innerText = inputs[0].value;
+        pTag[1].innerText = inputs[1].value;
+
+        //각 연산 함수를 호출하고 결과를 반환받아 최종 출력하기
+        switch(p_arg){
+            case '+':
+                pTag[2].innerText = f_add();
+                break;
+            case '-':
+                pTag[2].innerText = f_sub();
+                break;
+            case '*':
+                pTag[2].innerText = f_mtp();
+                break;
+            case '/':
+                pTag[2].innerText = f_dvd();
+                break;
+        }
+    }
+    
+    function f_add(){
+        return parseInt(inputs[0].value) 
+            + parseInt(inputs[1].value); //호출된 위치로 값 반환
+    }
+    let f_sub = function(){
+        return inputs[0].value - inputs[1].value;
+    };
+    
+    let f_mtp = () => inputs[0].value * inputs[1].value;
+
+    function f_dvd(){
+        return inputs[0].value / inputs[1].value;
+    }
+
+
+    
+    
+    
+</script>
+</body>
+</html>

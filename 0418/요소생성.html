@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" value="문자열로 일괄 생성">
+    <input type="button" value="요소먼저 생성후 속성 지정">
+    <div></div>
+    
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+
+    let $inputs = $('input');
+
+    $inputs.eq(0).on('click',function(){
+        
+        let $pTag = $("<p title='✨' onclick='f_click(this)'>Hi! jQuery!!</p>");
+        //자바스크립트에서 요소 추가시
+        // appendChild(node만대상)
+        // append(node, DOMString대상) 이지만, 실질적으로 DOMString으로 생성된 요소는 태그로 표현되지 못함
+
+        //제이쿼리에서는 문자열로 생성된 요소라도 append를 통해 태그로 표현됨
+        //appendChild()는 사용불가 >> js전용 메소드
+        // $('div').html($pTag); //innerHTML
+        $('div').append($pTag); //반복적인 추가
+    });
+
+    let f_click = function(p_this){
+        p_this.style.color = "lime";
+        $(p_this).css('backgroundColor','hotpink');        
+    }
+
+    $inputs.eq(1).on('click',function(){
+        // let $pTag2 = 
+        $("<p></p>",{
+            title: '💖',
+            text: '하이🐱‍🐉 제이쿼리~~💖',
+            // onclick: function(){
+            click: function(){
+                this.style.color = "skyblue";
+                $(this).css('border','3px dotted red')
+                        .css('display','inline-block');
+            }
+        }).appendTo('div');
+        
+        //부모.append(자식)
+        // $('div').append($pTag2);
+        
+        //자식.appendTo(부모)
+        // $pTag2.appendTo('div');
+    });
+
+    
+    
+    
+</script>
+</body>
+</html>

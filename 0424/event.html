@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+div {
+  background-color: black;
+  width: 70%;
+  height: 70vh;
+  color: white;
+  display: flex;
+  /* flex-container대상 속성으로 쉽게 가로세로정렬 */
+  justify-content: center; /* x축 정렬 */
+  align-items: center; /* y축정렬 */
+}
+span {
+  background-color: red;
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+}
+</style>
+</head>
+<body>
+    <div>
+        <span>a</span>
+    </div>    
+
+<script src="../js/jquery-3.7.1.min.js"></script>
+<script>
+    //click이벤트는 왼쪽클릭에 대한 정보만 제공(button0/which1)
+    //mousedown이벤트로 모든 클릭에 대한 정보를 제공받을 수 있다
+    $('div').on('mousedown',function(){
+        let result = event.type + "<br>";
+        result += event.target + "<br>";
+        result += "요소 기점 x축>> " + event.pageX + "<br>";
+        result += "요소 기점 y축>> " + event.pageY + "<br>";
+        result += "컨테이너 기점 x축>> " + event.screenX + "<br>";
+        result += "컨테이너 기점 y축>> " + event.screenY + "<br>";
+        result += "버튼위치(0,1,2)>> " + event.button + "<br>";
+        result += "버튼위치(1,2,3)>> " + event.which;
+
+        $(this).html(result); //태그정보를 포함하므로 html()사용
+    });
+    
+    //한 요소에 여러 이벤트 적용하기
+    $('div').on({
+        dblclick: function(){
+            $(this).css('background-color','gold');
+        },
+        mouseenter: function(){
+            $(this).css('background-color','lime');
+        },
+        mouseleave: function(){
+            $(this).css('background-color','blue');
+        }
+    });
+
+    
+</script>
+</body>
+</html>

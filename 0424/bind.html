@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<!-- 
+    bind
+    문서 로딩 전 document에 생성되어있는 요소(정적)에만 이벤트 핸들러가 동작한다
+    ※기본적으로 동적 요소에는 이벤트 핸들러가 동작하지 않음
+-->
+    <div id="wrapper">
+        <input type="button" class="btn" value="정적버튼">
+        <input type="button" id="clear" value="해제">
+    </div>
+    
+<script src="../js/jquery-3.7.1.min.js"></script>
+<script>
+    //★이벤트 실행 직전에 생성한 동적요소는 정적요소와 같은 평가를 받는다
+    let nb = $("<input type='button' class='btn' value='new버튼'>");
+    $('#wrapper').append(nb);
+
+
+    // $('.btn').bind(event,fn)
+    // $('.btn').on(event,fn)
+    $('.btn').on('click',function(){
+        //새 버튼 생성
+        $("<input type='button' class='btn' value='새버튼'>")
+        .appendTo($('#wrapper'));
+    });
+
+    
+    $('#clear').on('click',function(){
+        //버튼 생성 이벤트 제거
+        $('.btn').off('click');
+    });
+
+
+
+</script>
+</body>
+</html>

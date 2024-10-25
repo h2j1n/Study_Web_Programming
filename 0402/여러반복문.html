@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+table, td {
+  border:1px solid blue;
+}
+td {
+  width: 20px;
+  text-align: center;
+}
+body {
+  border-style: dashed;
+}
+</style>
+</head>
+<body>
+    <input type="button" value="while" onclick="f_while()">    
+    <input type="button" value="do-while" onclick="f_doWhile()">    
+    <input type="button" value="for" onclick="f_for()">    
+    <input type="button" value="nested_for" onclick="f_nestedFor()">    
+    <input type="button" value="for-in" onclick="f_forIn()">    
+
+<script>
+
+let i = 0;
+
+function f_while(){
+    while(i<5){
+        console.log("while_" + i);
+        i++;
+    }
+}
+    
+function f_doWhile(){
+    do {
+        console.log("do-while_" + i);
+        i++;
+    } while (i<5);
+}
+
+function f_for(){
+    for(;i<10;i++){
+        console.log("for_" + i);
+    }
+}
+
+function f_nestedFor(){
+    
+    let v_tbl;
+    
+    v_tbl = "<h1>구구단표</h1>";
+    v_tbl += "<table border=1>";
+    for (var i = 1; i <= 9; i++) {  
+        v_tbl += "<tr>";
+        v_tbl += "<td>" + i + "</td>";
+        for (var j = 2; j <= 9; j++) { 
+            v_tbl += "<td>" + i * j + "</td>";
+        }
+        v_tbl += "</tr>";
+    }
+    v_tbl += "</table>";
+
+    //출력영역(body) 얻기
+    // document.querySelector('body').innerHTML = v_tbl;
+    document.querySelector('body')
+        .insertAdjacentHTML('beforeend',v_tbl);
+}
+
+function f_forIn(){
+
+    //for-in: 객체의 열거된 속성에 대해 반복적인 작업을 수행
+    // for(객체의키를받아낼변수 in 객체(배열))
+
+    let obj = {
+        apple : "사과",
+        'banana' : "나바나",
+        "carrot" : "당근"
+    };
+    let arr=['포도','당근','배'];
+
+    for(let key in arr){
+        //객체의 key를 통해 vlaue를 얻을 수 있다
+        console.log("index>>", key );
+    }
+}
+    
+</script>
+</body>
+</html>

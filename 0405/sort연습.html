@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    let v_njs = [
+        {
+            "name" : "민지",
+            "birth" : "2004-05-07",
+            "position" : "리더"
+        },
+        {
+            "name" : "하니",
+            "birth" : "2004-10-06",
+            "position" : "댄서/리드보컬"
+        },
+        {
+            "name" : "다니엘",
+            "birth" : "2005-04-11",
+            "position" : "메인보컬"
+        },
+        {
+            "name" : "해린",
+            "birth" : "2006-05-15",
+            "position" : "서브보컬"
+        },
+        {
+            "name" : "해인",
+            "birth" : "2008-04-21",
+            "position" : "보컬/래퍼"
+        }
+    ];
+
+
+    // 이름, 생일, 포지션 별 정렬하기
+    // 정렬될 대상값은 (v_njs[idx].key)로 접근
+
+    //이름으로 정렬
+    v_njs.sort(function(a,b){
+        // console.log(b.name);
+        if(a.name > b.name){ //a가 클때
+            return 1;           //안바꿈
+        }else{
+            return -1;
+        }
+    });
+    //가장 후순위로 정렬된 결과값이 콘솔에 일괄 표현되므로
+    //Array내장객체의 from()를 사용해    
+    let nameSort = Array.from(v_njs); //직전 정렬된 정보를 새 배열에 담아냄
+    console.log("이름순 정렬", nameSort);
+    
+    //생일로 정렬
+    v_njs.sort(function(a,b){
+        //찾아낸 문자를 대체문자로 변경 - replace(oldTxt,newTxt)
+        // console.log( a.birth.replace("-","") ); //첫번째 대상만 치환
+        // console.log( a.birth.replaceAll("-","") );
+        // console.log( a.birth.replace(/-/g,"") );
+
+        return a.birth.replaceAll("-","") - b.birth.replace(/-/g,"");
+    });
+    let birSort = Array.from(v_njs);
+    console.log("생일 순 정렬", birSort);
+
+
+    //포지션으로 정렬
+    v_njs.sort(function(a,b){
+
+        // console.log( a.position.charCodeAt() );
+        return a.position.charCodeAt() - b.position.charCodeAt();
+    });
+    console.log("포지션 순 정렬", v_njs);
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</script>    
+</body>
+</html>

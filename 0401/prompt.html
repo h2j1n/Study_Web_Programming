@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    span{
+
+        border: 2px dotted red;
+    }
+</style>
+</head>
+<body>
+    <h3>숫자 2개와 연산자(+,-,*,/)중 하나를 입력받아 계산결과를 출력</h3>
+    <input type="button" value="계산" onclick="f_click()">
+
+    <span>숫자1</span>
+    <span>연산자</span>
+    <span>숫자2</span>
+    <span>결과</span>
+<script>
+function f_click() {
+    let v_su1 = prompt('숫자1 입력하슈','숫자만 입력하세요');
+    let v_su2 = prompt('숫자2를 입력하슈');
+    let v_oprt = prompt('연산자를 입력','+,-,*,/ 중 하나를 입력');
+
+    console.log("문자 정보를 parseInt()로 감쌌을 때 >> ",parseInt(v_su1));
+    // console.log(v_su1, v_oprt,v_su2);
+    let v_sum = 0; // 연산 결과를 저장할 변수
+
+    if(v_oprt == '+'){
+        // 문자열이 결합되지 않도록 parseInt()를 이용해 string -> numver 타입으로 변환 
+        v_sum = parseInt(v_su1) + parseInt(v_su2);
+    }else if(v_oprt == '-'){
+        v_sum = (v_su1) - (v_su2);
+    }else if(v_oprt == '*'){
+        v_sum = (v_su1) * (v_su2);
+    }else if(v_oprt == '/'){
+        v_sum = (v_su1) / (v_su2).toFixed(4);
+    }else{
+        alert("연산자를 입력하슈");
+        return f_click(); //함수 종료 후 재호출
+    }
+    console.log("결과 >>> ",v_sum);
+    // 출력할 영역 얻기
+    // querySelector()는 여러 요소를 대상으로 첫번째 요소만 반환하는 특징이 있음
+
+    // 출력할 영역 얻기
+    let span1 = document.querySelector('span');
+    //console.log("span >>", span1);
+    span1.innerText = v_su1;
+
+    let v_span = document.getElementsByTagName('span');
+    //console.log("span>>", v_span [1]); //in
+    v_span [1].innerText = v_oprt;
+
+    let span3 = document.querySelectorAll('span')[2];
+    //console.log("span>>", span3);
+    span3.innerText = v_su2;
+
+    let span4 = document.querySelector('span:nth-of-type(4)');
+    // let span4 = document.querySelector(':nth-child(6)');
+    //console.log("span>>", span4);
+    span4.innerText = v_sum;
+
+
+
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h4>최대 3개까지 체크하기</h4>    
+
+    <!-- <input type="checkbox" value="java" onclick="f_hobby(this)">자바
+    <input type="checkbox" value="js" onclick="f_hobby(this)">자바스크립트
+    <input type="checkbox" value="html" onclick="f_hobby(this)">HTML
+    <input type="checkbox" value="css" onclick="f_hobby(this)">CSS
+    <input type="checkbox" value="server" onclick="f_hobby(this)">서버 -->
+
+    <input type="checkbox" value="java">자바
+    <input type="checkbox" value="js">자바스크립트
+    <input type="checkbox" value="html">HTML
+    <input type="checkbox" value="css">CSS
+    <input type="checkbox" value="server">서버
+    
+<script>
+
+    //요소 얻기
+    // document.getElementsByTagName('input')
+    let v_inputs = document.querySelectorAll('input');
+
+    // 각각의 대상요소.addEventListener(이벤트, 함수)
+    for(let i=0; i<v_inputs.length; i++){
+        v_inputs[i].addEventListener('click', function(){
+            console.log( this.value, this.checked );
+
+            //기능 완성하기
+            if(this.checked){
+                chkCnt++;
+            }else{
+                chkCnt--;
+            }
+            
+            if(chkCnt > 3){
+                alert("3개까지 선택 가능");
+                chkCnt--;
+                this.checked = false; //선택해제
+            }
+        });
+    }
+
+let chkCnt = 0; //선택된 항목 갯수 저장
+
+let f_hobby = function(p_this){
+    // console.log(p_this.value, p_this.checked);
+
+    if(p_this.checked){
+        chkCnt++;
+    }else{
+        chkCnt--;
+    }
+    
+    if(chkCnt > 3){
+        alert("3개까지 선택 가능");
+        chkCnt--;
+        console.log(chkCnt); //3
+        p_this.checked = false; //선택해제
+    }
+
+
+
+
+};
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</script>
+</body>
+</html>

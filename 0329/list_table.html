@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+li {
+  list-style-type: square;
+}
+ul li:first-child {
+  color: red;
+  list-style-position: inside;
+  list-style-image: url(../images/icon.PNG);
+}
+li:nth-child(2) {
+  list-style-image: url(../images/icon.PNG);
+}
+table {
+  width: 500px;
+  /* border-collapse: collapse; */
+  border-spacing: 5px; /* collapse상태일때는 무시됌 */
+  caption-side: bottom;
+  empty-cells: show;
+  text-align: center;
+  text-align-last: right;
+  table-layout: fixed;
+  word-wrap: break-word;
+}
+.a {
+  background-color: lime;
+}
+/* odd 홀수 even짝수 */
+tr:nth-child(even) {
+    background-color: orange;
+}
+</style>
+</head>
+<body>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>    
+
+
+    <table border="">
+        <caption>제목</caption>
+        <tr class="a">
+            <td>1111</td>
+            <td>2</td>
+        </tr>
+        <tr>
+            <td>333333333111111<td>4</td>
+        </tr>
+        <tr class="a">
+            <td>1111</td>
+            <td>2</td>
+        </tr>
+        <tr>
+            <td>333333333111111<td>4</td>
+        </tr>
+    </table>
+
+</body>
+</html>

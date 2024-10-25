@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    //this가 가리키는 대상을 지정하고 싶을 때 call, apply, bind사용
+
+    //call과 apply는 대상 함수를 호출하며 this와 인자값을 전달 >> 사용즉시 함수가 호출되는 구조
+    //bind는 대상 함수를 호출하지는 않고 this와 인자 값을 전달 >> 전달하려는 정보만 함수에 세팅해주는 구조
+
+    function f_check(a,b,c,d,e){
+        console.log(this, a,b,c,d,e); 
+    }
+
+    let v_0 = {"name": "뚜레쥬르"};
+    let v_1 = {"name": "파리바게트"};
+
+    f_check();//this가 window를 가리킴
+
+    f_check.call(v_0,1,2,3,4,5); //this가 v_0(뚜레쥬르)객체를 가리킴
+    f_check.apply(v_1,[true,null,false,1,"ㅎㅎ"]); //this가 v_1(파리바게트)객체를 가리킴
+    f_check.bind(v_1); //함수 호출하지 않고 this와 추가적인 인자정보만 제공
+    
+</script>    
+</body>
+</html>

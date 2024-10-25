@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+img {
+  width: 300px;
+}
+</style>
+</head>
+<body>
+    <input type="button" value="요소추가" id="addElem">    
+    <input type="button" value="이미지추가" id="addImg">    
+    <input type="button" value="이미지추가2" id="addImg2">    
+    <input type="button" value="하이퍼링크추가" id="addA">    
+
+    <div></div>
+
+<script src="../js/random.js"></script>
+<script>
+    let v_div = document.querySelector('div'); //출력영역
+
+    document.querySelector('#addElem').addEventListener('click',function(){
+
+        //h4태그 생성하기
+        let v_h4 = document.createElement('h4'); //<h4></h4>
+
+        //텍스트노드 생성하기
+        let v_addTxt = document.createTextNode("🤞304호✌");
+        v_h4.append(v_addTxt);
+
+        // v_h4.innerText = "정보 변경";
+        v_h4.style.backgroundColor = f_rgb();
+
+        console.log(v_h4);
+        v_div.append(v_h4);
+    });
+
+    //랜덤배경색 생성하기
+    function f_rgb(){
+        return `rgba(${random(0,255)},${random(0,255)},${random(0,255)},0.${random(3,9)})`;
+    }
+
+    //메소드로 이미지 요소 생성
+    document.getElementById('addImg').addEventListener('click',function(){
+
+        //요소 껍데기
+        let v_img = document.createElement('img'); //<img>
+
+        //속성
+        // let attrSrc = document.createAttribute('src');
+        // let attrAlt = document.createAttribute('alt');
+        // attrSrc.value = "../images/cha.jpg";
+        // attrAlt.value = "차운우";
+        // v_img.setAttributeNode(attrSrc);
+        // v_img.setAttributeNode(attrAlt);
+
+        //속성 더 간단히
+        v_img.src = "../images/iu.png";
+        v_img.alt = "대체텍스트";
+        // v_img.width = 100;
+        v_img.style.width = "150px"; //style속성으로 부여시 단위까지
+        // v_img.setAttribute("width", "220");
+
+        // console.log(v_img);
+        v_div.append(v_img);
+    });
+
+    //DOMString으로 요소 생성하기 >> innerHTML >> insertAdjacentHTML()
+    document.querySelector('#addImg2').addEventListener('click',function(){
+        
+        let v_img = "<img src='../images/mahwa.jpg' alt='대체'>";
+        // v_div.appendChild(v_img); //TypeError: not of type 'Node'
+        // v_div.append(v_img); //추가는 되지만 태그파싱이 안돼요..ㅠㅠ
+        // v_div.innerHTML = v_img;
+        v_div.insertAdjacentHTML('beforeend',v_img);
+    });
+    
+    //하이퍼링크 화면에 출력하기
+    
+
+</script>
+</body>
+</html>

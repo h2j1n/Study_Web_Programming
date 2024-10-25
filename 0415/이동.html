@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+img {
+  width: 100px;
+  height: 100px;
+  margin: 4px;
+  border-style: solid;
+}
+#parent {
+  font-size: 0; /* 영역 공백 제로시키기 */
+}
+</style>
+</head>
+<body>
+    <div id="parent">
+        <img src="../images/lion.jpg" alt="">
+        <img src="../images/icon.PNG" alt="">
+        <img src="../images/tiger.jpg" alt="">
+        <img src="../images/ㅎㅈ.jpg" alt="">
+    </div>
+    <input type="button" value="&lt;&lt;" id="left">
+    <input type="button" value="||" id="stop">
+    <input type="button" value="&gt;&gt;" id="right">
+
+<script>
+
+    let timer;
+
+    document.querySelector('#left').addEventListener('click',f_left);
+
+    function f_left(){
+
+        //append(), appendChild() - 기본적으로 추가 기능을 갖지만
+        // 그 대상이 원래 존재하던 요소일 때는 요소의 이동을 제공한다
+        
+        //첫번째 이미지 요소를 parent영역의 젤 뒤로 이동시키기
+        
+        let v_parent = document.querySelector('#parent'); //요소에 접근하기 위한 기준점
+        // console.log( v_parent.childNodes[1] );
+        // console.log( v_parent.children[0] );
+        // console.log( v_parent.firstElementChild );
+        // console.log( v_parent.firstChild ); //줄넘기기호+공백
+        // console.log( v_parent.firstChild.nextSibling );
+        
+        let first = v_parent.firstElementChild;
+        v_parent.append(first); //대상요소의 맨 뒤로 이동되는 형태를 보여줌
+        
+
+        //버튼 요소 숨기기
+        this.setAttribute('style','display: none;'); //1회만 실행해도 됨>> 비활성화 처리가 됨
+        //★this사용시 2번째 함수호출부터 대상이 변경되므로 this대신 대상을 명확하게 지정해 사용하거나
+        // document.querySelector('#left').setAttribute('style','display: none;');
+
+        // document.querySelector('#right').setAttribute('style','display: none;');
+
+        //비활성화 처리
+        // console.log( this );
+        // this.setAttribute('disabled',true);
+        // document.querySelector('#right').setAttribute('disabled',true);
+
+        timer = setTimeout(f_left,1000); //재귀호출
+        //★ bind로 this가 가리키는 대상을 특정함
+        // timer = setTimeout(f_left.bind(document.querySelector('#left')),1000); //재귀호출
+        
+    }
+    // setInterval(f_left,1000); //delay로 지정된 ms마다 함수 반복 호출
+    
+
+    document.querySelector('#right').addEventListener('click',f_right);
+
+    function f_right(){
+        
+        let v_parent = document.querySelector('#parent');
+        
+        //가장 뒤 요소를 앞쪽으로 이동시키기
+        // console.log( v_parent.childNodes[7] );
+        // console.log( v_parent.childNodes[v_parent.childNodes.length-2] );//자식노드9(0~8)
+        // console.log( v_parent.children[v_parent.children.length-1] ); //자식요소노드4(0~3)
+        // console.log( v_parent.lastChild.previousSibling );
+        // console.log( v_parent.lastElementChild );
+        
+        let last = v_parent.lastElementChild;
+        //insertBefore(정보,위치)
+        v_parent.insertBefore(last, v_parent.firstElementChild);
+
+        timer = setTimeout(f_right, 1000);
+
+        this.setAttribute('disabled',true);
+        document.querySelector('#left').setAttribute('disabled',true);
+    }
+
+    document.querySelector('#stop').addEventListener('click',function(){
+
+        clearTimeout(timer); //타이머 함수 중지
+
+        //숨김처리된 요소 보이기( display=요소의레벨정보 )
+        document.querySelector('#left').style.display = 'inline'; //원 요소상태로 복귀
+        document.querySelector('#right').style.display = 'inline';
+
+        //비활성화 버튼 다시 활성화 처리
+        // document.querySelector('#left').setAttribute('disabled',false); //x
+        // document.querySelector('#left').setAttribute('enabled',true); //x
+        // 설정된 항목을 제거해야 함
+        document.querySelector('#left').removeAttribute('disabled'); //제거
+        document.querySelector('#right').removeAttribute('disabled');
+    });
+
+</script>
+</body>
+</html>

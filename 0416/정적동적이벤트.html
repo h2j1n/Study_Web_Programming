@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#wrapper {
+  border: 10px inset gray;
+}
+.ott {
+  border: 2px solid royalblue;
+  margin: 40px;
+}
+</style>
+</head>
+<body>
+    <div id="wrapper">
+        <div class="ott">넷플릭스</div>
+        <div class="ott">디즈니+</div>
+        <div class="ott">티빙</div>
+        <div class="ott">쿠팡플레이</div>
+    </div>    
+
+<script>
+    //모든 class요소에 클릭 이벤트 부여하기
+    //  - 자바스크립트는 대상요소 하나당 결과를 적용하는 특징이 있다
+    
+    let cls_ott = document.querySelectorAll('.ott');
+    for(let i=0; i<cls_ott.length; i++){
+        cls_ott[i].addEventListener('click',function(){
+            alert("보고싶은 " + cls_ott[i].textContent); //innerText, innerHTML사용
+        });
+    }
+
+    //동적요소를 추가할 위치를 변수에 담아놓기
+    let v_wrapper = document.querySelector('#wrapper');
+    let v_dynamic = "<div class=\"ott\">유투브 프리미엄</div>"; //문자열 요소는 innerHTML, insertAdjacentHTML()사용
+    // v_wrapper.innerHTML += v_dynamic; //기존요소를 지우고 자기 컨텐츠만 표시
+    //innerHTML을 사용해서 동적 요소 추가시 기존요소또한 동적요소로 변화시킴 >> 동적요소는 일반적인 이벤트 대상이 아님
+    v_wrapper.insertAdjacentHTML('beforeend',v_dynamic); //기존요소를 해치지않고(+정적상태 그대로) 동적요소를 추가함
+    
+    //동적요소는 이벤트의 위임(부모->자식)을 통해서만 동작 가능
+    //기본적으로 이벤트는 정적요소만 대상으로 적용할 수 있으므로 부모가 정적요소이어야 가능
+    v_wrapper.addEventListener('click',function(e){
+        // alert("부모의 이벤트를 위임받음");
+        console.log(e.target);
+        
+        if(e.target.id != 'wrapper'){
+            alert(e.target.innerText);
+        }
+    });
+    
+    
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+img {
+  width: 100px;
+  height: 100px;
+}
+div:empty {
+  padding: 30px;
+}
+.clrLime {
+  color: lime;
+}
+.bgPurple {
+  background-color: purple;
+}
+.bdrOlive {
+  border: 3px dashed olive;
+  border-radius: 30px;
+  padding: 10px;
+}
+</style>
+</head>
+<script src="../js/jquery-3.7.1.min.js"></script>
+<script>
+$(function(){
+    $('#btn').on('click',function(){
+        //p요소의 font color적용하기
+        //요소.style.color = 'red';
+        // $('p').css('color','red'); //우선순위가 높음
+        $('p').addClass('clrLime'); //유지보수성이 높음, 디자이너가 많이 쓰는 방식
+    });
+
+    $('p').on('click',function(){
+        // $(this).addClass('bgPurple'); 
+        // console.log( $(this).hasClass('bgPurple') );
+
+        /* if($(this).hasClass('bgPurple')){
+            //제거 removeClass
+            $(this).removeClass('bgPurple');
+        }else{
+            //추가 addClass
+            $(this).addClass('bgPurple');
+        } */
+
+        $(this).toggleClass('bgPurple');
+    });
+
+    //mouseover-mouseout vs mouseenter-mouseleave
+    $('div:empty').on('mouseenter',function(){
+       $(this).addClass('bdrOlive');
+    });
+    $('div:empty').on('mouseleave',function(){
+       $(this).removeClass('bdrOlive');
+    });
+
+    $('img').on('dblclick',function(){
+        $(this).toggleClass('bdrOlive');
+
+        console.log( $(this).height() ); //컨텐츠 높이만
+        console.log( $(this).innerHeight() ); //컨텐츠 + 안쪽여백 높이
+        console.log( $(this).outerWidth() ); //컨텐츠 + 안쪽여백 + 테두리 높이
+
+    });
+});
+</script>
+<body>
+    <div id="wrapper">
+       <input type="button" id="btn" value="확인"> 
+
+       <p>click!!</p>
+       <p>click!!</p>
+       <p>click!!</p>
+
+       <div></div>
+
+       <div id="imgBox">
+        <img src="../images/ala.jpg" alt="ala">
+        <img src="../images/lion.jpg" alt="lion">
+       </div>
+    </div>    
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+div {
+  border: 2px solid orange;
+}
+</style>
+</head>
+<body>
+    <div id="id_div">
+        <span>디브안에 스팬1</span>
+        <span>디브안에 스팬2</span>
+        <span>디브안에 스팬3</span>
+    </div>    
+
+<pre>
+ [Node정보]
+ - nodeName: 노드 고유의 이름(읽기전용 속성, get만 가능 set은 안됌)
+ - nodeValue, data: 노드의 값
+ - nodeType: 노드 고유의 타입을 정수로 반환(읽기전용 속성)
+</pre>
+
+<script>
+    let v_parent = document.querySelector('#id_div');
+    let v_child = document.querySelectorAll('span');
+
+    console.log( v_parent.nodeName );
+    console.log( v_parent.tagName );
+    console.log( v_child[2].nodeName );
+
+    console.log( v_parent.nodeValue );//null, textNode까지 접근해야 가능
+    console.log( v_parent.childNodes[1].firstChild.nodeValue );
+    console.log( v_parent.childNodes[1].firstChild.data );
+    console.log( v_parent.childNodes[1].firstChild.textContent ); //노드대상속성
+    console.log( v_parent.childNodes[1].firstChild.innerText ); //undefined, 요소대상속성
+    
+    
+    v_parent.childNodes[1].firstChild.nodeValue = "DIV안에 SPAN1";
+    v_parent.childNodes[1].firstChild.data = "DIV안에 SPAN1111";
+    v_parent.childNodes[1].firstChild.textContent = "DIV안에 SPAN~~";
+    
+    console.log( v_parent.childNodes[1].nodeValue ); //null
+    console.log( v_parent.childNodes[1].data ); //undefined
+    console.log( v_parent.childNodes[1].textContent ); //요소노드까지만 접근해도 ok
+    console.log( v_parent.childNodes[1].innerText ); //요소대상속성이므로 ok
+    
+    //노드의 타입 조회 - nodeType
+    console.log( v_parent.nodeType );
+    console.log( v_parent.childNodes[1].firstChild.nodeType );
+    console.log( document.nodeType );
+    console.log( v_parent.parentNode.parentNode.parentNode.nodeType );
+
+</script>
+</body>
+</html>

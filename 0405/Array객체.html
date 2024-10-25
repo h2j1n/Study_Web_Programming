@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<script>
+    var arr = [];
+
+    function inputNAME(){
+        var name = prompt("이름을 입력하세요");
+
+        if(name !== "" && name !== null){
+            arr.push(name);
+
+            inputNAME();
+        }else{
+            if (arr.length > 0) {
+                alert("[입력된 이름]\n" + arr.join("\n"));
+            } else {
+                alert("아무 이름도 입력되지 않았습니다.");
+            }
+
+        }
+    }
+    inputNAME();
+
+</script>
+</body>
+</html>

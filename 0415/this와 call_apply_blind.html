@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+/*
+this는 함수의 호출 시점에 따라 가르키는 대상이 달라짐
+
+변수를 선언한 것은 window라는 최상위 객체에 속성을 추가한 것과
+함수를 선언한 것은 window에 메서드를 추가한 것과 같다
+*/
+        var yujin="이유진";     //window라는 객체에 yujin이라는 속성이 추가된 것
+
+        function f_yj(){
+            console.log("~_~");     // this는 기본적으로 대상이 소속된 객체 window를 가리킨다.
+        }
+
+        console.log(Object.getOwnPropertyDescriptor(window));
+
+    </script>
+</body>
+</html>

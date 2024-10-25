@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <select id="id_sel" multiple size="7" onchange="f_sel(this)">
+
+        <option value="heartping">하츄핑</option>
+        <option value="happing">해핑</option>
+        <option value="shyping">부끄핑</option>
+        <option value="nonoping">시러핑</option>
+        <option value="lovping">바네핑</option>
+        <option value="coolping">덜덜핑</option>
+        <option value="sleeping">코자핑</option>
+
+    </select>
+<script>
+function f_sel(p_this){
+    console.log(p_this.options); // select 요소 내부 모든 option요소
+
+    // 옵션 요소 갯수만큼 반복적으로 selected인지 확인하고 배열에 담기
+    for(var i=0;i<p_this.options.length;i++){
+        if(p_this.options[i].selected){
+            //배열 값 담기
+            v_arr.push(p_this.options[i].value);
+        }
+    }
+    console.log("선택한"+v_arr);
+}
+</script>
+</body>
+</html>

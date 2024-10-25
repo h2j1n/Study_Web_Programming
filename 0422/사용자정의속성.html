@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h4>사용자 정의 속성(User Defined Attributes)</h4>                               <!-- 속성 정의시 대문자 표기 안됌 -->
+    <div id="id_div" class="nm_div" yujin="유진" data-alias="별명" data-hobby="취미" data-message-code="jmt"></div>
+    
+<script src="../js/jquery-3.7.1.min.js"></script>    
+<script>
+    let v_div = document.querySelector('div');
+
+
+    // console.log( v_div.id, v_div.className); // [[[[[[name은 확인해볼게요 ㅠㅠ]]]]]]]
+    
+    
+    console.log(v_div);     // 요소를 html 형태의 트리구조로 표현
+    console.dir(v_div);     // 객체의 속성을 트리구조로 표현
+    
+    
+    
+    
+    
+    //임의로 정의된 속성은 점연산자 또는 배열식접근법으로 정보를 얻을 수 없다
+    // console.log( v_div.yujin  ); //undefined
+    // console.log( v_div.getAttribute('yujin') ); //규칙을 통한 사용자 정의속성이 아닌 패턴은 이방식으로만 값 얻기 가능
+    // console.log( v_div.dataset.yujin ); //undefined
+
+
+
+
+    /* //js - dataset 속성으로 접근
+    // data-를 제외한 속성명으로 접근
+    // camel case로 변경
+    console.log( v_div.dataset.alias );
+    console.log( v_div.dataset['hobby'] );
+    console.log( v_div.dataset['messageCode'] ); //접근시 camel case로 변경
+
+    //jq - data()로 접근
+    // data-를 제외한 속성명으로 접근
+    // kebab case, camel case 둘다 가능
+    console.log( $(v_div).data('alias') );
+    console.log( $(v_div).data('message-code') );
+    console.log( $(v_div).data('messageCode') );
+    
+    //jq - attr()로 접근 
+    //full attribute 사용(속성 값 그대로)
+    console.log( $(v_div).attr('data-message-code') ); */
+    
+    
+</script>
+</body>
+</html>

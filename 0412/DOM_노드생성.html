@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+div {
+  border: 2px solid green;
+}
+</style>
+</head>
+<body>
+    <div id="id_div">
+        <span>디브안에 스팬1</span>
+        <span>디브안에 스팬2</span>
+        <span>디브안에 스팬3</span>
+        <!-- 여기다 -->
+    </div>    
+
+<pre>
+ [Node생성]
+ -createElement()
+ -createAttribute()
+ -createTextNode()
+
+ [Node추가]
+ -appendChild(node): 노드리스트의 마지막에 추가
+ -insertBefore(node, 위치): 위치의 앞쪽에 삽입, 위치에 null을 설정했을 때 appendChild와 동일기능
+ -insertAdjacentElement(위치, element)
+ -insertData(offset, data): 텍스트노드에 텍스트 추가
+ -deleteData(offset, 삭제갯수)
+</pre>
+
+<script>
+  let v_parent = document.querySelector('#id_div');
+  let v_child = document.querySelectorAll('span');
+
+  //요소 노드 생성
+  let v_pTag = document.createElement('p'); // <p></p>
+
+  //속성 노드 생성 및 설정
+  let addAttr = document.createAttribute('title');
+  addAttr.value = "타이틀속성";
+
+  v_pTag.setAttributeNode(addAttr);
+
+  //텍스트 노드 생성
+  let addTxt = document.createTextNode("p요소를 생성했슈");
+  v_pTag.appendChild(addTxt);
+  console.log(v_pTag);
+
+  //생성된 요소 출력하기
+  // v_parent.appendChild(v_pTag);
+  // v_parent.insertBefore(v_pTag, v_parent.childNodes[3]);
+  v_parent.insertAdjacentElement('beforebegin',v_pTag);
+
+
+  //insertData(offset,data)
+  // v_parent.lastElementChild.firstChild.deleteData(5,2); //Ssspan추가 직전 삭제
+  v_parent.lastElementChild.firstChild.insertData(5,"Ssspan");
+  v_parent.lastElementChild.firstChild.deleteData(11,2); //Ssspan추가 직후 삭제
+  
+</script>
+</body>
+</html>

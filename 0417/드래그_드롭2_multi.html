@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style type="text/css">
+    div {
+      border: 1px dashed cornflowerblue;
+      height: 200px;
+    }
+    </style>
+</head>
+<body>
+    <div class="dropArea">드롭영역</div>    
+
+<script>
+    
+    let v_dropArea = document.querySelector('.dropArea');
+
+    v_dropArea.addEventListener('dragover',function(e){
+        e.preventDefault();
+    });
+    v_dropArea.addEventListener('drop',function(){
+        event.preventDefault();
+        
+        let v_files = event.dataTransfer.files; //여러 파일리스트
+
+        //숙제1. 한번 추가할때 최대 5개까지만 선택되도록
+        //    2. 여러번 추가해도 최종적으로 5개까지만 표현되도록
+        for(let i=0; i<v_files.length; i++){
+
+            let rd = new FileReader();
+            rd.onload = function(){
+                // console.log( rd.result );
+                console.log("File객체가 제공하는 파일리스트", v_files[i] );
+    
+                let v_img = document.createElement('img'); //<img>
+                v_img.src = rd.result;
+                v_img.alt = v_files[i].name;
+                v_img.title = v_files[i].name;
+                v_img.width = 100;
+    
+                v_dropArea.append(v_img);
+            }
+            rd.readAsDataURL(v_files[i]); 
+        }
+    });
+
+    window.ondragover = function(){
+        event.preventDefault();
+    }
+    window.ondrop = function(e){
+        e.preventDefault();
+    }
+    
+    
+    
+    
+</script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+    /* this는 함수의 호출 시점에 따라 가리키는 대상이 달라짐
+
+       변수를 선언한 것은 window라는 최상위객체에 속성을 추가한 것과 같고,
+       함수를 선언한 것은 window에 메소드를 추가한 것과 같다
+       */
+      
+    window.yujin = "윈도우유진"; 
+    var yujin = "var이유진"; //window라는 객체에 yujin이라는 속성이 추가된 것
+
+    // console.log( Object.getOwnPropertyDescriptors(window) );
+
+    function f_yj(a,b){
+        console.log(this, a); //this는 기본적으로 대상이 소속된 객체 window를 가리킨다
+    }
+    
+    //객체 
+    let v_this = {"name": "이유진"};
+    v_this.print = f_yj; //함수 참조
+    
+    f_yj(); //기본적으로 this는 window를 가리키지만
+
+    
+    // call, apply의 첫번째 인자는 this가 가리킬 대상을 지정하고
+    // call의 두번째 인자부터는 함수로 연결할 정보
+    f_yj.call(v_this,'apple','banana'); 
+    // apply의 두번째 인자부터 배열을 사용해 정보를 넘김
+    f_yj.apply(v_this,['apple','banana']); 
+    // bind는 함수를 호출하지 않고 this와 .인자만 넘겨줌
+    f_yj.bind(v_this, 1,2)(); 
+    
+    v_this.print();
+    
+</script>    
+</body>
+</html>

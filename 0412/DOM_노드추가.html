@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#id_div {
+  /* html, css는 id가 중복되어도 크게 문제되지 않으나, 
+    javascript는 id중복시 문제가 발생할 수 있음 주의  */
+  border: 2px solid palevioletred;
+}
+</style>
+</head>
+<body>
+    <div id="id_div">
+        <span>디브안에 스팬1</span>
+        <span>디브안에 스팬2</span>
+        <span>디브안에 스팬3</span>
+    </div>    
+
+<pre>
+  [Node추가]
+  -appendChild(node) - 노드만, 한개씩, 반환값 있음
+  -append(node 또는 DOMString) - 노드와 js문자열 모두, 여러개, 반환값 없음
+  
+  [Node삭제]
+  -removeChild(자식노드)
+  -remove()
+  
+  [Node복제]
+  -cloneNode(false) - default, 자식제외 속성만 복사
+  -cloneNode(true) - 속성 및 자식요소 함께 복사
+</pre>
+
+<script>
+  let v_parent = document.querySelector('#id_div');
+  let v_child = document.querySelectorAll('span');
+
+  // v_parent.appendChild("<p>appendChild는 노드만을 대상으로 추가</p>"); //typeError
+  let v_rtn = v_parent.append("<p>영역에 추가는 되지만, 태그파싱(해석)은 안돼!!</p>","(^^)","~[-_-]~");
+  console.log("반환값? >>", v_rtn ); //undefined
+  
+  let v_add = document.createTextNode("[TEXT_NODE_ADD1]");
+  let v_add1 = document.createTextNode("[TEXT_NODE_ADD2]");
+  let v_rtn1 = v_parent.appendChild(v_add1);
+  console.log("반환값? >>", v_rtn1 );
+
+
+  //노드 삭제
+  // v_parent.removeChild(v_parent.children[0]);
+  v_parent.children[0].remove();
+
+
+  //노드 복제
+  // let v_clone = v_parent.cloneNode(); //얕은복사
+  let v_clone = v_parent.cloneNode(true); //깊은복사
+  // document.body.appendChild(v_clone);
+  document.body.insertBefore(v_clone,v_parent);
+
+  //js는 id가 중복될 때 가장 상위요소만을 인정한다
+  document.querySelector('#id_div')
+    .style.backgroundColor = "blue";
+  
+</script>
+</body>
+</html>

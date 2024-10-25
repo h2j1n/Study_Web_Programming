@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 변수 키워드 3종
+  var     
+    함수 범위 유효(function scope)
+    재선언, 재할당 모두 가능 >> 개발자 간 오류 발생 가능성이 높아 사용을 지양
+    
+    - 키워드 생략을 허용 >> 의도치 않은 전역화 발생
+    - 중복 선언 허용 >> 의도치 않은 값 변경
+    - 호이스팅 적용 대상 >> 선언 이전 참조 가능의 비정상적인 코드 흐름 발생
+    
+    협업 중 개발자간 혼란과 코드 복잡도 증가를 보완하기 위한 새로운 키워드 도입(ES6)
+
+  let
+    블록 범위 유효(block scope)
+    재선언 불가 >> 이미 사용중인 변수에 다른 값을 할당하여 발생될 예외를 차단
+    재할당만 가능
+    변수 사용전까지 초기화 되지 않음(선언과 초기화의 분리)
+
+  const
+    block scope
+    재선언, 재할당 모두 불가
+    선언 시 반드시 값이 할당되어야 함 (=초기화하지 않으면 에러 발생)
+	  보통 대문자를 사용해서 선언 (강제는 아님, ex. const NUM = 7;)
+    
+    변하지 않는 값(상수)을 갖는 변수 생성 (=값을 재할당 할 수 없는 읽기전용 변수, 상수 변수)
+    *참조타입(Array, Object, Function)에 사용 추천 >> 참조 타입은 주소를 참조하기 때문에 값 변경이 가능
+-->
+
+
+     <script>
+        "use strict"; //엄격모드, 현대적인 방식의 코드가 아닐 경우 에러를 발생시키는 가이드
+
+        var v_varb = "전역선언";
+
+        function f_fnc(){
+            v_varb = "지역선언"; //키워드 없이 선언되면 전역변수(var)로 인식하므로 사용을 지양
+            alert("(함수내부)" + v_varb);
+        }
+        f_fnc();
+        //alert("(함수외부)" + v_varb);
+
+        // 참조 타입에 많이 사용되는 const키워드
+
+        const PType = "기본형"; // 재선언 / 재할당 불가로 선언 시 초기화 필요
+        //PType = "primitive type"; // 재할당 시도시 type error : Assignment to constant variable
+        
+        console.log(PType);
+
+        const RType = ["참","조","형"];
+        const RType1 = {o:"오",b:"브",ject:"젝트"};
+        const RType2 = function(param){
+          // 자바스크립트는 동적타입 언어로서 암묵적 형변환을 제공하며,
+          // "" 빈 문자열은 false, 공백(" ")을 포함한 나머지는 true로 인식
+          // 숫자의 경우 0을 제외한 나머지(음수값 포함) true로 인식
+          if(param){
+            console.log("전달된 값 >> " ,param);
+          }else{
+            console.log("전달된 값이 없음");
+          }
+
+        };
+
+        console.log("원형>>" , RType1)
+
+        RType[1] = "zo";
+        RType1.ject = "JECT!!";
+        console.log("일부 값 변경 >>",RType1);
+        
+        //함수 호출
+        RType2('0');
+        
+     </script>   
+</body>
+</html>

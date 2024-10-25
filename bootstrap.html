@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+div[class|=container]{
+    border: 2px solid gold;
+}
+div[class|=col]{
+    border: 2px dashed green;
+}
+</style>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+
+</head>
+
+<body>
+<!-- Trigger the modal with a button -->
+<!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button> -->
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&gt;</button>
+        <h4 class="modal-title">제목</h4>
+      </div>
+      <div class="modal-body">
+        <p>내용 (❁´◡`❁)</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- container: 레이아웃을 만드는 가장 상위 요소, 사이트 컨텐츠 래핑에 필요한 요소 -->
+    <div class="container">
+        가로 해상도에 따라 너비값 변화<br>
+        768px이상(sm) - width 720px / 992px이상(md) - width 960px / 1200px이상(lg) - width 1140px
+    </div>
+    <div class="container-fluid">
+        가로 해상도 관계없이 너비 100% 표현
+    </div>
+
+
+
+    <div class="container-fluid">
+        <!-- 한 행을 표현 -->
+        <div class="row">
+            <!-- 그리드 시스템, 한 행에 최대 12칸을 허용/ 그룹화하여 더 넓은 열 만들기 가능 -->
+            <!-- (xs, sm, md, lg) 적용된 사이즈 키워드보다 브라우저 해상도가 작아질 경우 그리드 시스템 깨짐 주의 -->
+            <div class="col-sm-1">
+                <input type="text" class="form-control" value="😜">
+            </div>
+            <div class="col-sm-2">
+                <!-- data-backdrop= static(블랙/유지), true(블랙/닫힘/dafault), false(투명/유지) -->
+                <input type="button" class="btn btn-danger" 
+                value="버튼" >
+                <!-- data-toggle="modal" data-target="#myModal" data-backdrop="false" -->
+            </div>
+            <div class="col-sm-3">
+                <input type="text" class="form-control"  value="😜">
+            </div>
+            <div class="col-sm-6">
+                <input type="text" class="form-control"  value="😜">
+            </div>
+        </div>
+    </div>
+    <script>
+        $('#modalBtn').on('click',function(){
+            // 타겟,modal
+            $('myModal').modal();
+        });
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+div {
+  background-color: rgb(239, 238, 238);
+  padding: 10px;
+  margin: 20px;
+}
+div div {
+  background-color: white;
+  border: 1px solid;
+}
+div:nth-of-type(2) div { 
+  /* height: 300px; */
+  height: auto;
+}
+div:last-of-type div {
+  border: 2px dashed gold;
+}
+button {
+  background-color: blue;
+  border-radius: 20px;
+  color: white;
+  width: 60px;
+  height: 35px;
+}
+</style>
+</head>
+<body>
+    <div>
+        <input type="file" id="attch">
+        <button>읽기</button>
+    </div>
+    <div>
+        <h1>결과 출력(FileReader객체)</h1>
+        이미지파일은 readAsDataURL() /
+        텍스트파일은 readAsText() 사용
+        <div id="d1"></div>
+    </div>
+    <div>
+        <h1>파일 정보(File객체)</h1>
+        <div id="d2"></div>
+    </div>
+
+<script>
+
+    let v_d1 = document.querySelector('#d1');
+    let v_d2 = document.querySelector('#d2');
+    
+    document.querySelector('button').addEventListener('click',function(){
+        let v_file = document.querySelector('#attch').files;
+        // console.log(v_file);
+
+        //이미지와 텍스트 타입 구분
+        let v_type = v_file[0].type;
+
+        //split("구분자")
+        let type1 = v_type.split("/")[0]; // image/jpeg
+
+        //substring(str,end직전)
+        let type2 = v_type.substring(0, v_type.indexOf("/"));
+        
+        console.log(type1, type2); // image/jpeg
+
+        //조건에 따른 분기처리
+        if(type1 == "image"){
+
+            //결과 출력 - readAsDataURL() 이미지 생성후 화면에 추가
+
+            //1.파일리더객체 생성
+            let rd = new FileReader();
+            
+            //3. load이벤트로 함수 실행후 result로 처리된 정보 받기
+            rd.onload = function(){
+                // (img요소를 메소드로 생성하기)
+                let v_img = document.createElement('img');
+                //4. 3에서 받은 정보를 img요소의 src로 사용하기
+                v_img.src = rd.result;
+                v_img.alt = "";
+                v_img.style.width = "100%";
+                //5. 완성된 img를 영역에 표현하기- append 등
+                v_d1.append(v_img);
+            }
+            //2. 리더객체의 readAsDataURL()로 정보 읽기
+            rd.readAsDataURL(v_file[0]);
+
+            //파일 정보 - files를 통해 받아낸 fileList의 세부속성 
+            //           (name, type, size, modifiedDate)을 출력영역에 그대로 표현
+            let rstStr = "파일 이름: " + v_file[0].name + "<br>";
+            rstStr += "파일 타입: " + v_file[0].type + "<br>";
+            rstStr += `파일 크기: ${v_file[0].size}<br>`;
+            rstStr += `마지막 수정일자: ${v_file[0].lastModifiedDate.toLocaleDateString()}`;
+
+            v_d2.innerHTML = rstStr;
+
+        }else if(type1 == "text"){
+             
+            //결과 출력 - readAsText() 이미지 생성후 화면에 추가
+
+            //result결과값을 영역에 표현하기 - innerText 등 
+
+            //파일 정보
+            let rstStr = "파일 이름: " + v_file[0].name + "<br>";
+            rstStr += "파일 타입: " + v_file[0].type + "<br>";
+            rstStr += `파일 크기: ${v_file[0].size}<br>`;
+            rstStr += `마지막 수정일자: ${v_file[0].lastModifiedDate.toLocaleDateString()}`;
+
+            v_d2.innerHTML = rstStr;
+
+        }else {
+            //image 또는 text가 아닌 제 3의 type일 경우 
+            v_d1.innerText = "다른 형식의 파일입니다";
+        }
+
+    });
+
+
+    
+    
+</script>
+</body>
+</html>

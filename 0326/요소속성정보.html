@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+div {
+  /* border: 1px solid black;     */
+  border-style: solid;
+  padding: 40px;
+}
+</style>
+</head>
+<body>
+    <!-- 각 태그는 하나의 요소이자 객체이며, 점 연산자 또는 배열식접근법으로 요소 속성값에 접근 가능 -->
+    <input type="button" id="id_btn" name="nm_btn" value="버튼" onclick="f_btn()">
+
+    <div id="id_div" onclick="f_div()">
+        나를 클릭시 innerHTML속성으로 요소 사이 컨텐츠 정보를 얻음
+    </div>
+
+<script>
+function f_div(){
+
+    var v_div = document.getElementById('id_div');
+    console.log(  v_div.innerHTML  ); //div요소의 내부컨텐츠 얻음
+
+/* 
+    document객체는 웹 페이지 그 자체이며,
+    웹 페이지 내 html요소에 접근할 땐 반드시 document객체부터 시작해야 함
+    document: 스크립트에서 html문서를 가리키는 예약어
+    innerHTML: 시작태그와 종료태그 사이 내용을 읽거나 설정하는 속성 
+*/
+
+    // console.log( document.head.innerHTML ); //get
+    console.log( document.head.outerHTML );
+
+    v_div.innerHTML = "<mark>값 변경</mark>";
+}
+
+function f_btn(){
+    // alert("잘 뜨는지 확인");
+    // console.log("개발자모드의 콘솔탭에서 나를 확인해보슈");
+    //요소의 id속성값을 통해서도 객체를 얻을 수 있지만 권장하지 않음(테스트용도로만 쓰기)
+    console.log("버튼 요소의 type속성값은 >> ",  id_btn['type']  );
+    console.log("버튼 요소의 id속성값은 >> ",  id_btn['id']  );
+    console.log("버튼 요소의 name속성값은 >> ",  id_btn.name  );
+    console.log("버튼 요소의 value속성값은 >> ",  id_btn.value  );
+    console.log("버튼 요소의 onclick속성값은 >> ",  id_btn.onclick  );
+
+    id_btn.value = "클릭버튼으로 변경"; //set
+
+    //요소를 얻는 가장 보통/표준의 방식
+    var v_btn = document.getElementById('id_btn');
+    console.log("변수에 뭐가 담겼니? >> ", v_btn.id);
+}
+</script>    
+</body>
+</html>

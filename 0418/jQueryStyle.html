@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h4>jQuery😜</h4>    
+    <h4>jQuery💕</h4>    
+    <h4>jQuery🤣</h4>    
+    <h4>jQuery👀</h4>    
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+    //대상요소에 일괄 스타일 적용하기
+
+    //js - 항목이 각각 제어되는 특징
+    let v_h4s = document.querySelectorAll('h4'); //유사배열
+    for(let i=0; i<v_h4s.length; i++){
+        v_h4s[i].style.backgroundColor = "orange";
+    }
+    v_h4s[1].style.color = "red";
+
+    //jq - 선택된 항목에 대해 일괄 적용되는 특징
+    $('h4').css('color','blue');
+    //eq(index) - element queue 요소행렬
+    $('h4').eq(2).css('backgroundColor','purple');
+    
+</script>
+</body>
+</html>

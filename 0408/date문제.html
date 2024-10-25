@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+div {
+  border: 3px double blue;
+  padding: 20px;
+}
+</style>
+</head>
+<body>
+    <h4><a href="javascript:after100();">100일 후 날짜</a></h4>
+    <h4><a href="javascript:anniv();">지나온 날짜(D+day)</a></h4>
+    <h4><a href="javascript:suryo();">수료까지 남은 날짜(D-day)</a></h4>
+
+    <div></div>
+
+    <br><br>
+    <input type="date" id="calendar">
+    <h4><a href="javascript:refund();">환불가능여부 알리기</a></h4>
+
+<script>
+let today = new Date(); //전역
+let todayMs = today.getTime(); //기준일 ~ 오늘까지의 경과시간 ms
+
+//환불가능일 계산
+let refund = () => {
+    
+    //calendar의 value얻기
+    // document.querySelector('#calendar')
+    let buyDay = document.getElementById('calendar');
+    console.log("구입한 날짜", buyDay.value);
+    
+    //날짜 선택 null체크
+    if(buyDay.value == ""){
+        alert("날짜를 선택하슈");
+        return; //함수 종료
+    }
+
+    let buyDate = new Date(buyDay.value);
+    console.log("구입 날짜 객체", buyDate);
+
+    let buyMs = buyDate.getTime(); //기준일~구입날짜까지의 ms
+    let ms = todayMs - buyMs;
+    let dd = ms/1000/60/60/24; //계산된 일자 정보
+    console.log("일자 정보", dd);
+
+    if(dd > 7){
+        alert("환불기간이 지났슈");
+    }else if(dd < 0){
+        alert(today.toLocaleDateString() + "보다 이전 날짜를 선택하세요");
+    }else{
+        alert("환불가능합니다");
+    }
+    buyDay.value = ""; //달력선택값 초기화
+};
+
+
+
+let suryo = function(){
+
+    // 오늘까지의 경과시간 구하기 todayMs
+    // 수료일까지의 경과시간 구하기(24.9.23)
+    let suryoMs = new Date("2024.9.23").getTime();
+    // 수료일ms - todyMs 최종출력
+    let ms = suryoMs - todayMs;
+
+    let hh = ms/1000/60/60;
+
+    let result = "수료일까지 남은 시간: " + hh.toFixed(2) + "시간 <br>";
+    result += "남은 기간: " + Math.ceil(hh/24) + "일";
+
+    document.querySelector('div').insertAdjacentHTML
+                        ('beforeend',result);
+    
+};
+
+
+function anniv(){
+    //2002월드컵으로부터 몇 년 지나왔나
+    let worldCup = new Date("2002.5.31");
+    
+    let wcMs = worldCup.getTime(); //기준일~월드컵까지 경과된 ms
+    console.log(wcMs/1000/60/60/24/365 + "년 경과");
+    
+    let ms = todayMs - wcMs; //월드컵으로부터 지나온 경과시간 ms
+    
+    console.log(Math.ceil(ms/1000/60/60/24/365) + "년 경과됨");
+    console.log( (ms/1000/60/60/24/365).toFixed() + "년 경과됨");
+    
+}
+
+
+let after100 = function(){
+
+    let day100Ms =1000*60*60*24*100; //100일에 대한 ms
+
+    console.log( new Date(todayMs + day100Ms)
+                    .toLocaleDateString() );
+};
+</script>
+</body>
+</html>

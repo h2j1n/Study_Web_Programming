@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+    /* 요소(tag)선택자 */
+    div {
+      /* 속성명: 속성값; */
+      color: gold;
+      background-color: gray;
+      
+    }
+    /* id 선택자 - id 는#으로 접금 */
+    #elsa{
+          color:white;
+          /* border-color 미지정시 color에 지정된 값이 동일 적용되는 규칙 */
+        border-style: solid;
+      }
+    /* class 선택자 - class는 .으로 접근 */
+    .dsn{
+        /* 선택자에 따른 우선순위 적용으로 
+        class 선택자보다 높은 우선순위인 id 항목은 적용 안됌 
+        */
+        color: greenyellow;
+    }
+    /* 전체선택자 */
+    * {
+        border: 2px dashed purple;
+    }
+    /* 다중 요소 선택(그룹핑) */
+    #elsa, #px{
+        font-style: italic;
+        font-size: 1.3em;
+        direction: rtl;
+    }
+
+
+</style>
+</head>
+<body>
+    <!-- w3c에서 권장 >> id값은 유일하게, class는 중복 정용해도 좋음 -->
+    <div class="dsn">알라딘</div>
+    <div class="dsn">뮬란</div>
+    <div id="elsa" class="dsn">겨울왕국</div>
+    <div id="px">엘리멘탈</div>
+    <div class="dsn">라이온킹</div>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+div {
+  background-color: yellow;
+  height: 25px;
+}
+p {
+  border: 3px solid gray;
+}
+</style>
+</head>
+<body>
+    <button>empty</button>    
+    <button>remove</button>    
+    <button>remove(selector)</button>    
+
+    <div>
+        <p>Hello jQuery</p>
+    </div>
+    <div>
+        <p>Hi jQuery</p>
+    </div>
+    <p>안녕하세요</p>
+    <p id="pp">jQuery입니당</p>
+    
+<script src="../js/jquery-3.7.1.min.js"></script>
+<script>
+    $btns = $('button');
+
+    //selector.empty() >> selector의 자식만 비움
+    $btns.eq(0).on('click',function(){
+        $('div').eq(0).empty();
+    });        
+    
+    //selector.remove() >> selector와 그 자식 모두 지움
+    $btns.eq(1).click(function(){
+        $('div').eq(1).remove();
+    });
+
+    //selector.remove(sel) >> 지정된 'sel'요소만 지움
+    $btns.eq(2).on('click',function(){
+        $('p').remove('#pp');
+    });
+    
+</script>
+</body>
+</html>

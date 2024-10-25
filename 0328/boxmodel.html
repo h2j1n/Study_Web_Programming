@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+div {
+  border-style: solid;
+  width: 250px;
+  height: 100px;
+  background-color: gold;
+  /* 첫번째값은 상하, 두번째 값은 좌우로 적용 */
+  /* margin-auto시 브라우저가 요소를 제외한 공간을 자동계산하여 중앙배치함 */
+  margin: 30px auto; 
+  /* border-box: 요소에 지정된 너비 값의 계산식에 테두리와 안쪽여백 값을 포함시킴 */
+  box-sizing: border-box;
+}
+hr {
+  visibility: hidden;
+}
+#small {
+  border: 3px solid red;
+  padding: 20px;
+}
+#large {
+  border: 10px solid green;
+  padding: 50px;
+}
+</style>    
+</head>
+<body>
+    <div id="small"></div>
+    <hr>
+    <div id="large"></div>
+</body>
+</html>

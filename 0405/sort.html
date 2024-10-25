@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    // sort(sortFunction) - 콜백없는 sort는 많이 사용하지 않음
+
+    // 함수 내부에 정의된 함수를 콜백(call back)함수라 부르고, 함수의 실행 뒤에 불려지는 내부 함수
+
+    let v_numArr = [12,100,230,32,300,24,512];
+
+    //콜백 함수를 활용한 크기순 정렬
+    v_numArr.sort(function(a,b){
+        // console.log( `a: ${a} - b: ${b} | ${a-b}` ); //공식을 통해 음수결과값일 때 자리변경
+        console.log( `b: ${b} - a: ${a} | ${b-a}` ); //내림차순
+        return b-a;
+    })
+    console.log(v_numArr);
+    
+
+    //문자열 간 마이너스 연산은 불가하며 NaN을 발생시킴
+    //문자열 간 크기비교를 위해 비교연산자를 이용한다
+    // 비교연산자 이용시 내부적으로 문자를 유니코드로 변환시켜 값을 비교함
+    console.log("가영"-"나영");
+
+    console.log( "가영".charCodeAt() ); //44032
+    console.log( "나영".charCodeAt() ); //45208
+    if("가영"<"나영"){
+        // alert("나영이가 유니코드가 더 높아");
+    }
+    
+    let v_strArr = ["가영","라영","다영","나영","하영"];
+    //마이너스 연산 대신 비교연산자를 이용
+    v_strArr.sort(function(a,b){
+        //a(right value)가 클 때 안바꿈 = 오름차순
+        //b(left value)가 클 때 안바꿈 = 내림차순
+        if(a<b){
+            return 1;
+        }else{
+            return -1; //음수 값이 반환될 때 자리변경이 이뤄짐
+        }
+    });
+    console.log(v_strArr); // a>b 오름차순 a<b내림차순
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</script>    
+</body>
+</html>

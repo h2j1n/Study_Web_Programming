@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<!-- 
+    attribute
+        - html에서 사용되는 속성
+        - html문서에서 표현되는 정적인 속성 그 자체
+        - 요소에 적용하는 추가적인 정보이며, 그 값은 변하지 않는 특성(정적)
+    
+    property
+        - DOM(html에서 javascript객체로 표현된 문서 모델)에서 사용되는 속성
+        - DOM에서 표현되는 동적 속성 또는 그 속성의 값
+        - DOM제어를 통해 속성에 대한 값이 동적으로 변할 수 있는 특성
+        
+    jqeury에서는
+    attr() - 요소에 추가적인 속성(정보)를 조회하거나 적용
+    prop() - 요소의 상태를 제어 (boolean타입으로)
+
+-->
+        
+    <input value="아무거나">
+
+<script src="../js/jquery-3.7.1.min.js"></script>
+<script>
+    $('input').on('keyup',function(){
+        console.log( this.getAttribute('value') ); //정적
+        console.log( this.value ); //동적
+
+        console.log( $(this).attr('value') ); //정적 컨텐츠만 제공
+        console.log( $(this).prop('value') ); //동적컨텐츠도 제공
+    });
+    
+</script>
+</body>
+</html>

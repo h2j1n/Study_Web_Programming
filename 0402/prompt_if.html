@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+span {
+  border: 2px dotted red;
+}
+</style>
+</head>
+<body>
+    <h3>숫자 2개와 연산자(+,-,*,/)중 하나를 입력받아 <br>계산결과를 출력</h3>
+    <input type="button" value="계산" onclick="f_click()">
+
+    <span>숫자1</span>
+    <span>연산자</span>
+    <span>숫자2</span>
+    =<span>결과</span>
+
+<script>
+function f_click(){
+    let v_su1 = prompt('숫자1 입력하슈','숫자만 입력하세요');
+    let v_su2 = prompt('숫자2를 입력하슈');
+    let v_oprt = prompt('연산자를 입력','+,-,*,/ 중 하나만 입력');
+
+    console.log("NaN 여부를 boolean으로 반환받기>> ", isNaN(parseInt(v_su1)) );
+    //parseInt(v_su1) >> 문자를 Integer로 변환시 NaN반환
+    //isNaN(parseInt(v_su1)) NaN여부를 boolean으로 반환
+    if(isNaN(parseInt(v_su1)) || isNaN(parseInt(v_su2))){
+        alert("숫자만 입력하슈");
+        return; //문자입력시 함수 종료
+    }
+
+    let v_sum = 0; //연산 결과를 저장할 변수
+    // console.log(v_su1, v_oprt, v_su2);
+
+    if(v_oprt == '+'){
+        //문자열 결합되지 않도록 parseInt()를 이용해 string-> number타입으로 변환
+        v_sum = parseInt(v_su1) + parseInt(v_su2);
+        // v_sum = v_su1 + v_su2;//문자열 결합 주의
+    }else if(v_oprt == '-'){
+        v_sum = v_su1 - v_su2;
+    }else if(v_oprt == '*'){
+        v_sum = v_su1 * v_su2;
+    }else if(v_oprt == '/'){
+        v_sum = (v_su1 / v_su2).toFixed(4); //소수점 자리 제어
+    }else{
+        alert("연산자를 입력하슈");
+        return f_click(); //함수 종료 후 재호출
+    }
+    console.log("결과>>>", v_sum);
+
+    //츨력할 영역 얻기
+    // querySelector()는 여러 요소를 대상으로 첫번째 요소만 반환하는 특징이 있음
+    let span1 = document.querySelector('span');
+    // console.log("첫번째 span영역>>", span1);
+    span1.innerText = v_su1;
+
+    let v_span = document.getElementsByTagName('span'); //반환되는 여러 요소 중
+    // console.log("두번째 span영역>>", v_span[1]); //index1인 요소
+    v_span[1].innerText = v_oprt;
+    
+    let span3 = document.querySelectorAll('span')[2]; //반환되는 여러 요소 중 index2인 요소
+    // console.log("세번째 span영역>>", span3);
+    span3.innerText = v_su2;
+    
+    let span4 = document.querySelector('span:nth-of-type(4)');
+    // let span4 = document.querySelector(':nth-child(6)');
+    // console.log("네번째 span영역>>", span4);
+    span4.innerText = v_sum;
+}
+</script>
+</body>
+</html>

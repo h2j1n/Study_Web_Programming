@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+:enabled {
+  border: 1px ridge blue;
+}
+:disabled {
+  border: 1px groove red;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script>
+$(function(){
+
+  // 스타일 적용 시점상 실시간으로 처리되는 결과에 대응하지 못하므로 CSS로 대체
+  // $(':enabled').css('border','1px ridge blue');
+  // $(':disabled').css('border','1px groove red');
+  
+  //현재 비활성화 상태를 활성화상태로 변경하기
+
+  //js - 단일 속성 변경
+  let v_forms = document.querySelectorAll('form *');
+  console.log( v_forms[4] ); 
+  //setAttribute >> 해제 removeAttribute
+  // v_forms[4].removeAttribute('disabled'); //적용된 속성 제거
+  
+  //js - 일괄 속성 변경
+  for(let i=0; i<v_forms.length; i++){
+
+    // v_forms[i].setAttribute('disabled',false); //x
+    // v_forms[i].setAttribute('enabled',true); //x
+    // v_forms[i].removeAttribute('disabled');
+  }
+
+  //jq - attr('속성명','속성값') 이용하기
+  let $forms = $(':input');
+  // console.log($forms);
+  // $forms.attr('disabled',false); //적용 속성값에 대해 boolean제어가능
+  // $forms.attr('enabled',true); //x -> 이미 반영되어있는 속성에 대한 제어만 가능 
+  $forms.removeAttr('disabled'); //적용 속성을 제거하는 방식도 가능
+});
+</script>
+</head>
+<body>
+  <h4>:enabled :disabled</h4>
+  <form>
+    <input id="txt" disabled> <br>
+    <input type="password" id="pw" disabled> <br>
+    <select id="sel" disabled>
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+    </select> <br>
+    <textarea id="mtline" disabled>multiline</textarea> <br>
+    <input type="button" value="확인" onclick="alert()" disabled>
+  </form>
+</body>
+</html>
